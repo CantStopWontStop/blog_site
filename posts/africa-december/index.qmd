@@ -1,6 +1,7 @@
 ---
 title: "December: the Month of Return"
 author: "SN Dumbuya"
+draft: true
 image: meek-mill-ghana.jpeg
 date: "2023-01-08"
 categories: 

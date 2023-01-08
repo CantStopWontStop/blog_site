@@ -1,5 +1,5 @@
 ---
-title: "Thoughts on the AFROsphere"
+title: "Building the AFROsphere"
 page-layout: full
 title-block-banner: true
 format:

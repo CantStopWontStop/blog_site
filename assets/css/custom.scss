@@ -163,7 +163,7 @@ div.quarto-post .listing-categories .listing-category {
 
 .listing-author {
   font-family: "Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
-  color: $green !important;
+  color: #bfbfbf !important;
 }
 
 .listing-reading-time {
@@ -177,6 +177,10 @@ div.quarto-post .listing-categories .listing-category {
   font-weight: 500;
   color: $white !important;
   font-family: "Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.thumnail-image {
+  border: 1px solid white;
 }
 
 // Callout Styles
@@ -376,6 +380,9 @@ table,
   font-size: .8rem;
 }
 
+.footnote-ref {
+  color: $white;
+}
 // From Distill
 
 d-article hr {

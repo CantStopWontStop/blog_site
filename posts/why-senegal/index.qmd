@@ -3,6 +3,7 @@ title: "Why We Went to Senegal"
 author: "SN Dumbuya"
 image: african_ren_monument.jpg
 date: "2023-01-08"
+draft: true
 categories: 
     - senegal
     - history
