@@ -1,0 +1,18 @@
+---
+title: "About"
+image: assets/images/about.png
+about:
+  template: jolla
+  links:
+    - icon: twitter
+      text: afromation_io
+      href: https://twitter.com/afromation_io
+    - icon: instagram
+      text: afromation.io
+      href: https://www.instagram.com/afromation.io/
+    - icon: tiktok
+      text: afromation_io
+      href: https://github.com
+---
+
+> Afromation - Using Technology to Inform, Unite, and Mobilize the AFROsphere

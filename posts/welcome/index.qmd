@@ -1,0 +1,13 @@
+---
+title: "Welcome To My Blog"
+author: "SN Dumbuya"
+date: "2023-01-07"
+categories: [update]
+title-block-banner: true
+---
+
+This is the first post of this blog, where we discuss issues related to the AfroSphere. Welcome!
+
+::: column-margin
+![](https://images.unsplash.com/photo-1626695436755-3e288720849c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80)
+:::
