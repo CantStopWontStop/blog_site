@@ -43,7 +43,7 @@ $min-contrast-ratio:   1.85 !default;
 // Body
 
 $body-bg:            $black !default;
-$body-color:         $light !default;
+$body-color:         $white !default;
 
 .content p {
   line-height: 1.7 !important;
@@ -145,6 +145,10 @@ div.quarto-post .listing-categories .listing-category {
   list-style: none;
   font-size: .9rem;
   font-weight: 300;
+}
+.sidebar nav[role=doc-toc] ul li a.active {
+    border-left: 1px solid #21274b;
+    color: #00863f !important;
 }
 
 .listing-title {
@@ -276,6 +280,7 @@ main.quarto-banner-title-block #title-block-header.quarto-title-block.default .q
 
 p {
   font-family: $font-family-sans-serif;
+  color: $white;
 }
 
 h1,h2 {
@@ -386,7 +391,7 @@ table,
 // From Distill
 
 d-article hr {
-grid-column: screen;
+
 width: 100%;
 border: none;
 border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -443,6 +448,9 @@ font-size: 15px;
 line-height: 1.4em;
 }
 
+d-article h1 {
+  color: #f2f2f2;
+}
 d-article a {
 color: #4d4d4d;
 }
@@ -549,7 +557,7 @@ code {
 
 h1 {
     font-weight: 800;
-    color: #2d2d2d;
+    color: #f2f2f2;
     font-family: "Gotham SSm A", "Gotham SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     letter-spacing: 0px !important;
 }
@@ -595,16 +603,20 @@ body {
 .figure-img {
   margin-bottom: .5rem;
   line-height: 1;
-  width: 40%;
 }
 
 figcaption{
   color: #6d7a86;
-  width: 54%;
   text-align: center;
   margin: 0 auto;
 }
 
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    color: #00863f;
+}
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    color: #fff;
+}
 
 #title-block-header.quarto-title-block.default .quarto-title .title {
   font-size: 2.25rem;

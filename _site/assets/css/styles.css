@@ -1,2 +1,8 @@
 /* css styles */
 
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    color: #00863f;
+}
+.nav-link {
+    color: #fff;
+}

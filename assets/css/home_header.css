@@ -4,9 +4,9 @@
   background:
       /* top, transparent red, faked with gradient */
       linear-gradient(
-    rgba(227,27,35, 0.9),
-    rgba(0,0,0, 0.6),
-    rgba(0,134,63, 0.9)
+    rgba(227,27,35, 0.3),
+    rgba(0,0,0, 0.5),
+    rgba(0,134,63, 0.3)
       ),
       /* bottom, image */
       url('../images/james-wiseman-IebZAH6kaNw-unsplash.jpg') !important;
@@ -22,4 +22,8 @@
   font-size: 2.2rem;
   font-family: "Gotham SSm A", "Gotham SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica     Neue", Arial, sans-serif !important;
   color: #fff !important;
+}
+
+.toc-active{
+  color: #00863f;
 }
