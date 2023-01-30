@@ -52,7 +52,7 @@ In honor of his many accomplishments, the University of Dakar, where he establis
 The African Renaissance Monument is a 49 m (161 ft) tall bronze statue representing the triumph of African liberation and rebirth of the African man and his family. The monument symbolizes the need to reclaim the power, heritage, and legacy of Africa.
 
 ::: column-margin
-![](african_ren_monument.jpg)
+![Monument de la Renaissance Africaine (African Renaissance Monument)](african_ren_monument.jpg){width="1000"}
 :::
 
  
@@ -76,7 +76,7 @@ Gorée Island is a small island located off the coast of Dakar. It was a hub of 
 Dakar is not only a good place to learn Africa's history. It's also a place to see Africa's future. All throughout the city, there are massive commercial, residential, and infrastructural developments underway.
 
 ```{=html}
-<iframe width="720" height="405" src="https://www.youtube.com/embed/_oNJHK8mktk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="text-align:center"></iframe>
+<iframe width="720" height="405" src="https://www.youtube.com/embed/_oNJHK8mktk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="text-align:center;"></iframe>
 ```
  
 
