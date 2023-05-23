@@ -19,10 +19,6 @@ jobs:
         with:
           use-public-rspm: true
 
-      - uses: r-lib/actions/setup-renv@v2
-        with:
-          profile: '"production"'
-
       - name: Render Quarto Project
         uses: quarto-dev/quarto-actions/render@v2
         with:
