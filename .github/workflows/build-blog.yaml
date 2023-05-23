@@ -6,7 +6,7 @@ on:
 name: Render and Publish
 
 jobs:
-  build-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -23,6 +23,12 @@ jobs:
         uses: quarto-dev/quarto-actions/render@v2
         with:
           to: html
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
 
       - name: Move website to droplet
         uses: appleboy/ssh-action@master
