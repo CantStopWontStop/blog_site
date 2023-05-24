@@ -6,7 +6,7 @@ on:
 name: Render and Publish
 
 jobs:
-  build:
+  build-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -33,5 +33,6 @@ jobs:
           script: |
             cd ~
             git clone git@github.com:viswaah/blog_site
+            rm -r /var/www/drum/public_html/*
             mv blog_site/_site/* /var/www/drum/public_html
             rm -r blog_site
