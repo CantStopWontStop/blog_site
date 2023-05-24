@@ -33,5 +33,5 @@ jobs:
           script: |
             cd ~
             git clone git@github.com:viswaah/blog_site
-            mv blog_site/_site/* /var/www/blog/public_html
+            mv blog_site/_site/* /var/www/drum/public_html
             rm -r blog_site
