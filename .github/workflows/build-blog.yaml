@@ -32,7 +32,7 @@ jobs:
           key: ${{secrets.KEY}}
           script: |
             cd ~
-            git clone git@github.com:viswaah/blog_site
+            git clone git@github.com:CantStopWontStop/blog_site.git
             rm -r /var/www/drum/public_html/*
             mv blog_site/_site/* /var/www/drum/public_html
             rm -r blog_site
