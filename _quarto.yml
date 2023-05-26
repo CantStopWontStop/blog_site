@@ -3,6 +3,7 @@ project:
 
 website:
   title: "afromation"
+  site-url: "https://drum.afromation.io"
   favicon: assets/images/afromation_favicon.png
   navbar:
     background: dark
@@ -12,14 +13,13 @@ website:
         href: https://www.instagram.com/afromation.io/
       - icon: twitter
         href: https://twitter.com/afromation_io
-  
+
 format:
   html:
     theme:
       dark: assets/css/custom.scss
     css: assets/css/styles.css
-    background-color: 'black'
+    background-color: "black"
     toc: true
 
 editor: visual
-
