@@ -1,6 +1,6 @@
 ---
 title: "404: Page not found"
-image: assets/images/404.png
+image: /assets/images/404.png
 about:
   template: jolla
 ---
