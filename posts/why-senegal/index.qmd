@@ -11,8 +11,6 @@ categories:
     - travel
     - art
 title-block-banner: true
-execute:
-  freeze: auto
 ---
 
 ## **1. Reclaiming African History**

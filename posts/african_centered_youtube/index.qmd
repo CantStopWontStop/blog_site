@@ -15,7 +15,6 @@ categories:
     - entertainment
 title-block-banner: true
 execute: 
-  freeze: auto
   echo: false
   warning: false
   message: false
