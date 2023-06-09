@@ -1,0 +1,2 @@
+googlesheets4::read_sheet('https://docs.google.com/spreadsheets/d/1Ypnku8bwmJNfpf3gYnRDjpFBa-GrCIkvKu-p9O2eOp8/edit?resourcekey#gid=2048702408',na = c("", "<NA>")) |> 
+    readr::write_csv('posts/african_centered_youtube/table.csv')
