@@ -5,6 +5,7 @@ website:
   title: "afromation"
   site-url: "https://drum.afromation.io"
   favicon: assets/images/afromation_favicon.png
+  margin-header: subscribe.html
   navbar:
     background: dark
     right:
