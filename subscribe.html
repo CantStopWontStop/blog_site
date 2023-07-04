@@ -1,12 +1,25 @@
 <div id="mc_embed_shell">
   <style type="text/css">
+    :root {
+      --bg-color-dark: #333;
+      --color-dark: #eee;
+      --bg-color-light: #eee;
+      --color-light: #333;
+    }
     #mc_embed_signup {
-      margin-bottom: 14px;
+      width: 320px;
+      text-align: center;
+      margin: 0 auto 20px;
     }
     #mc_embed_signup h5 {
       font-weight: 600;
       font-size: 1rem;
-      color: #7d7d7d;
+    }
+    .quarto-light #mc_embed_signup h5 {
+      color: var(--color-light);
+    }
+    .quarto-dark #mc_embed_signup h5 {
+      color: var(--color-dark);
     }
     .mc-field-group {
       padding: 1px;
@@ -14,8 +27,15 @@
     .mc-field-group label {
       font-size: 14px;
       color: #aaa;
+      text-align: left;
       display: block;
       margin-bottom: 4px;
+    }
+    .quarto-light .mc-field-group label {
+      color: var(--color-light);
+    }
+    .quarto-dark .mc-field-group label {
+      color: var(--color-dark);
     }
     .mc-field-group input {
       display: block;
@@ -25,8 +45,16 @@
       margin-bottom: 12px;
       font-size: 14px;
       background-color: transparent;
-      border: 0.5px solid #eee;
+      border: 0.5px solid;
       color: #eee;
+    }
+    .quarto-light .mc-field-group input {
+      color: var(--color-light);
+      border-color: var(--color-light);
+    }
+    .quarto-dark .mc-field-group input {
+      border-color: var(--color-dark);
+      color: var(--color-dark);
     }
     input[type="submit"] {
       display: block;
@@ -34,24 +62,43 @@
       width: 100%;
       padding: 6px 10px;
       background-color: #eee;
-      border: 0.5px solid #eee;
+      border: 0.5px solid;
       border-radius: 4px;
       color: #000;
       transition: all 0.3s ease-in-out;
       cursor: pointer;
     }
-    input[type="submit"]:hover {
-      color: #eee;
-      background-color: #000;
+    .quarto-light input[type="submit"] {
+      color: var(--color-light);
+      border-color: var(--color-light);
+      border-color: var(--color-light);
+    }
+    .quarto-dark input[type="submit"] {
+      border-color: var(--color-dark);
+      background-color: var(--bg-color-dark);
+      color: var(--color-dark);
+    }
+    .quarto-light input[type="submit"]:hover {
+      background-color: var(--bg-color-dark);
+      color: var(--color-dark);
+    }
+    .quarto-dark input[type="submit"]:hover {
+      color: var(--color-light);
+      background-color: var(--bg-color-light);
     }
     #mce-EMAIL-HELPERTEXT {
-      color: #eee;
       font-size: 14px;
       background-color: transparent;
       font-weight: normal;
       margin: 0;
       margin-bottom: 12px;
       padding: 0;
+    }
+    .quarto-light #mce-EMAIL-HELPERTEXT {
+      color: var(--color-light);
+    }
+    .quarto-dark #mce-EMAIL-HELPERTEXT {
+      color: var(--color-dark);
     }
     #mc_embed_signup div.mce_inline_error {
       color: #d9534f;
@@ -75,6 +122,11 @@
     }
     #mce-responses .response#mce-error-response {
       color: #d9534f;
+    }
+    @media (max-width: 480px) {
+      #mc_embed_signup {
+        width: 100%;
+      }
     }
   </style>
   <div id="mc_embed_signup">
