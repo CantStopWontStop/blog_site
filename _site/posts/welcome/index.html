@@ -173,54 +173,55 @@ ul.task-list li input[type="checkbox"] {
       --color-dark: #eee;
       --bg-color-light: #eee;
       --color-light: #333;
+      --color-light-max: #000;
+      --color-dark-max: #fff;
     }
-    #mc_embed_signup {
+    #subscription-container {
       width: 320px;
       text-align: center;
-      margin: 0 auto 20px;
+      margin: 0 auto;
     }
-    #mc_embed_signup h5 {
+    #subscription-container h5 {
       font-weight: 600;
       font-size: 1rem;
     }
-    .quarto-light #mc_embed_signup h5 {
+    .quarto-light #subscription-container h5 {
       color: var(--color-light);
     }
-    .quarto-dark #mc_embed_signup h5 {
+    .quarto-dark #subscription-container h5 {
       color: var(--color-dark);
     }
-    .mc-field-group {
+    .subscribe-form {
       padding: 1px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
     }
-    .mc-field-group label {
-      font-size: 14px;
-      color: #aaa;
-      text-align: left;
-      display: block;
-      margin-bottom: 4px;
-    }
-    .quarto-light .mc-field-group label {
-      color: var(--color-light);
-    }
-    .quarto-dark .mc-field-group label {
-      color: var(--color-dark);
-    }
-    .mc-field-group input {
+    .subscribe-form input {
       display: block;
       width: 100%;
-      padding: 6px 10px;
+      padding: 8px 10px;
       border-radius: 4px;
       margin-bottom: 12px;
       font-size: 14px;
       background-color: transparent;
-      border: 0.5px solid;
+      border: 1px solid;
       color: #eee;
     }
-    .quarto-light .mc-field-group input {
+    .subscribe-form input:focus {
+      outline: none;
+    }
+    .quarto-light .subscribe-form input:focus {
+      border-color: var(--color-light-max);
+    }
+    .quarto-dark .subscribe-form input:focus {
+      border-color: var(--color-dark-max);
+    }
+    .quarto-light .subscribe-form input {
       color: var(--color-light);
       border-color: var(--color-light);
     }
-    .quarto-dark .mc-field-group input {
+    .quarto-dark .subscribe-form input {
       border-color: var(--color-dark);
       color: var(--color-dark);
     }
@@ -254,91 +255,76 @@ ul.task-list li input[type="checkbox"] {
       color: var(--color-light);
       background-color: var(--bg-color-light);
     }
-    #mce-EMAIL-HELPERTEXT {
-      font-size: 14px;
-      background-color: transparent;
-      font-weight: normal;
-      margin: 0;
-      margin-bottom: 12px;
-      padding: 0;
-    }
-    .quarto-light #mce-EMAIL-HELPERTEXT {
-      color: var(--color-light);
-    }
-    .quarto-dark #mce-EMAIL-HELPERTEXT {
-      color: var(--color-dark);
-    }
-    #mc_embed_signup div.mce_inline_error {
-      color: #d9534f;
-      background-color: transparent;
-      font-weight: normal;
-      margin: 0;
-      font-size: 14px;
-      margin-bottom: 12px;
-      padding: 0;
-    }
-    #mce-responses .response {
-      background-color: transparent;
-      font-weight: normal;
-      font-size: 14px;
-      margin: 0;
-      margin-bottom: 12px;
-      padding: 0;
-    }
-    #mce-responses .response#mce-success-response {
-      color: #4bb543;
-    }
-    #mce-responses .response#mce-error-response {
-      color: #d9534f;
-    }
     @media (max-width: 480px) {
-      #mc_embed_signup {
+      #subscription-container {
         width: 100%;
       }
     }
+    #info {
+      width: 100%;
+      display: block;
+      opacity: 1;
+      transition: all 0.3s;
+    }
+    #info.hide {
+      opacity: 0;
+    }
+    #info.success {
+      color: #4bb543;
+    }
+    #info.error {
+      color: #d9534f;
+    }
+    #info.info {
+      color: #bebe00;
+    }
   </style>
-  <div id="mc_embed_signup">
-    <form action="https://gmail.us21.list-manage.com/subscribe/post?u=7e82355761a64461cf442c0b6&amp;id=3f350e8fdd&amp;f_id=003e5ee1f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
-      <div id="mc_embed_signup_scroll">
-        <h5>Subscribe to our newsletter</h5>
-        <div class="mc-field-group">
-          <label for="mce-EMAIL">Email Address <span class="asterisk">*</span></label><input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required="" value=""><span id="mce-EMAIL-HELPERTEXT" class="helper_text"></span>
-        </div>
-        <div id="mce-responses" class="clear foot">
-          <div class="response" id="mce-error-response" style="display: none"></div>
-          <div class="response" id="mce-success-response" style="display: none"></div>
-        </div>
-        <div aria-hidden="true" style="position: absolute; left: -5000px">
-          /* real people should not fill this in and expect good things - do not
-          remove this or risk form bot signups */
-          <input type="text" name="b_7e82355761a64461cf442c0b6_3f350e8fdd" tabindex="-1" value="">
-        </div>
-        <div class="optionalParent">
-          <input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button" value="Subscribe">
-        </div>
-      </div>
+  <div id="subscription-container">
+    <h5>Subscribe to our newsletter</h5>
+    <form class="subscribe-form" name="subscription">
+      <input type="text" placeholder="Email" class="subscribe-form__text" name="Email">
+      <input type="submit" class="subscribe-form__btn" value="Subscribe">
+      <span id="info" class="hide">test</span>
     </form>
   </div>
-  <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
-  <script type="text/javascript">
-    (function ($) {
-      window.fnames = new Array();
-      window.ftypes = new Array();
-      fnames[0] = EMAIL;
-      ftypes[0] = merge;
-      fnames[1] = FNAME;
-      ftypes[1] = merge;
-      fnames[2] = LNAME;
-      ftypes[2] = merge;
-      fnames[3] = ADDRESS;
-      ftypes[3] = merge;
-      fnames[4] = PHONE;
-      ftypes[4] = merge;
-      fnames[5] = BIRTHDAY;
-      ftypes[5] = merge;
-      false;
-    })(jQuery);
-    var $mcj = jQuery.noConflict(true);
+  <script>
+    const scriptURL =
+      "https://script.google.com/macros/s/AKfycbys90RlG4tzGVaRcUaYRCRVeytSmKc3SuuMD70uvyEeo-RynAHJRKTNu2v_fQ1JNQQuMQ/exec";
+    const form = document.forms["subscription"];
+    const subscriptionInfo = document.getElementById("info");
+
+    function createInfo(message, type, timeout) {
+      subscriptionInfo.innerHTML = message;
+      subscriptionInfo.className = "";
+      subscriptionInfo.classList.add(type);
+      if (timeout) {
+        setTimeout(() => {
+          if (!subscriptionInfo.classList.contains("hide")) {
+            subscriptionInfo.classList.add("hide");
+          }
+        }, timeout);
+      }
+    }
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      if (emailRegex.test(form.Email.value)) {
+        createInfo("Please wait...", "info");
+        fetch(scriptURL, { method: "POST", body: new FormData(form) })
+          .then((response) => {
+            createInfo("Subscribed successfully", "success", 3000);
+            form.reset();
+          })
+          .catch((error) => {
+            console.error("Error!", error.message);
+            createInfo("Unable to post the email", "error", 3000);
+          });
+      } else {
+        createInfo("Invalid email", "error", 5000);
+        form.Email.focus();
+      }
+    });
   </script>
 </div>
 <script id="quarto-html-after-body" type="application/javascript">
