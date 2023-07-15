@@ -23,3 +23,7 @@ format:
     toc: true
 
 editor: visual
+
+listing:
+  feed:
+    categories: [education, culture, history]

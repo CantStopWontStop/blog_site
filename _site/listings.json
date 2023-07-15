@@ -1,10 +1,40 @@
 [
   {
+    "listing": "/about.html",
+    "items": [
+      "/404.html",
+      "/posts/why-senegal/index.html",
+      "/index.html",
+      "/posts/welcome/index.html",
+      "/posts/african_centered_youtube/index.html"
+    ]
+  },
+  {
     "listing": "/index.html",
     "items": [
       "/posts/african_centered_youtube/index.html",
       "/posts/why-senegal/index.html",
       "/posts/welcome/index.html"
     ]
+  },
+  {
+    "listing": "/posts/africa-december/index.html",
+    "items": []
+  },
+  {
+    "listing": "/posts/african_centered_youtube/index.html",
+    "items": []
+  },
+  {
+    "listing": "/posts/kemet/index.html",
+    "items": []
+  },
+  {
+    "listing": "/posts/welcome/index.html",
+    "items": []
+  },
+  {
+    "listing": "/posts/why-senegal/index.html",
+    "items": []
   }
 ]
