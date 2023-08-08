@@ -1,6 +1,0 @@
-renv::install("rmarkdown")
-renv::install("dplyr")
-renv::install("leaflet")
-renv::install("tidyverse")
-renv::install("kableExtra")
-renv::snapshot()

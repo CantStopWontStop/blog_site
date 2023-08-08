@@ -20,8 +20,11 @@ jobs:
         with:
           r-version: "4.2.0"
 
-      # - name: Install renv Dependencies
-      #   uses: r-lib/actions/setup-renv@v2
+      - name: Install dependencies
+        run: sudo apt-get install libcurl4-openssl-dev
+
+      - name: Install renv Dependencies
+        uses: r-lib/actions/setup-renv@v2
 
       - name: Render Quarto Project
         uses: quarto-dev/quarto-actions/render@v2
