@@ -39,4 +39,4 @@ jobs:
         run: ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
 
       - name: Rsync over SSH
-        run: rsync -avz --delete ./_site/ ${{secrets.USERNAME}}@${{secrets.HOST}}:/var/www/drum/public_html/
+        run: rsync -avz --delete ./_site/ ${{secrets.USERNAME}}@${{secrets.HOST}}:/var/www/afromation/public_html/
