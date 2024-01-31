@@ -15,24 +15,28 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      - uses: r-lib/actions/setup-r@v2
-        with:
-          use-public-rspm: true
+      - name: Install R
+        uses: r-lib/actions/setup-r@v2
+
+      - name: Install dependencies
+        run: sudo apt-get install libcurl4-openssl-dev libgdal-dev libharfbuzz-dev libfribidi-dev
+
+      - name: Install renv Dependencies
+        uses: r-lib/actions/setup-renv@v2
 
       - name: Render Quarto Project
         uses: quarto-dev/quarto-actions/render@v2
         with:
           to: html
 
-      - name: Deploy to droplet
-        uses: appleboy/ssh-action@master
+      - name: Install SSH Key
+        uses: shimataro/ssh-key-action@v2
         with:
-          host: ${{secrets.HOST}}
-          username: ${{secrets.USERNAME}}
-          key: ${{secrets.KEY}}
-          script: |
-            cd ~
-            git clone git@github.com:CantStopWontStop/blog_site.git
-            rm -r /var/www/drum/public_html/*
-            mv blog_site/_site/* /var/www/drum/public_html
-            rm -r blog_site
+          key: ${{ secrets.KEY }}
+          known_hosts: "placeholder"
+
+      - name: Adding Known Hosts
+        run: ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
+
+      - name: Rsync over SSH
+        run: rsync -avz --delete ./_site/ ${{secrets.USERNAME}}@${{secrets.HOST}}:/var/www/drum/public_html/
