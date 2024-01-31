@@ -24,3 +24,7 @@ format:
     include-after-body: subscribe.html
 
 editor: visual
+
+listing:
+  feed:
+    categories: [education, culture, history]
