@@ -17,7 +17,7 @@ post_path ='../posts'
 path = os.path.join(post_path, today)
 path
 
-os.makedirs(path, exist_ok=True)
+os.makedirs(path, 0o755, True)
 
 # %%
 cpy('index.qmd', os.path.join(path,'index.qmd'))
