@@ -17,7 +17,7 @@ post_path ='../posts'
 path = os.path.join(post_path, today)
 path
 
-os.mkdir(path, False)
+os.makedirs(path, exist_ok=True)
 
 # %%
 cpy('index.qmd', os.path.join(path,'index.qmd'))
@@ -48,7 +48,7 @@ df
 # %%
 SCOPES = ["https://www.googleapis.com/auth/youtube.readonly"]
 
-SERVICE_ACCOUNT_FILE =  "/home/viswaah/afromation-key.json"
+SERVICE_ACCOUNT_FILE =  "/root/afromation-key.json"
 
 
 def get_authenticated_service():
