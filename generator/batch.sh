@@ -10,6 +10,6 @@ pipreqs .
 pip install -r requirements.txt
 python3 generate_post.py
 
-git commit -a -m "post: $(date '+%Y-%m-%d')"
+git commit -am "post: $(date '+%Y-%m-%d')"
 
 git push origin main
