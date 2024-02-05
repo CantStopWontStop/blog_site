@@ -5,7 +5,6 @@ from datetime import date
 from shutil import copy as cpy
 import re
 
-import google_auth_oauthlib.flow
 import googleapiclient.discovery
 import googleapiclient.errors
 from google.oauth2.credentials import Credentials
@@ -15,12 +14,11 @@ from google.oauth2 import service_account
 today = date.today().strftime("%Y-%m-%d")
 post_path ='../posts'
 path = os.path.join(post_path, today)
-path
 
 os.makedirs(path, 0o755, True)
 
 # %%
-cpy('index.qmd', os.path.join(path,'index.qmd'))
+
 
 # %%
 def convert_google_sheet_url(url):
@@ -43,7 +41,6 @@ url = 'https://docs.google.com/spreadsheets/d/1bJIUEOh8yUg46dREnE_bXlha9K35nqkFk
 new_url = convert_google_sheet_url(url)
 
 df = pd.read_csv(new_url)
-df
 
 # %%
 SCOPES = ["https://www.googleapis.com/auth/youtube.readonly"]
@@ -61,8 +58,6 @@ def get_authenticated_service():
 creds = service_account.Credentials.from_service_account_file(
         SERVICE_ACCOUNT_FILE, scopes=SCOPES
     )
-
-creds
 
 # %%
 youtube = googleapiclient.discovery.build("youtube", "v3", credentials=creds)
@@ -87,11 +82,9 @@ def main(channelID):
     videoid = response['items'][0]['id']['videoId']
     video_meta.append(snippet)
     video_id.append(videoid)
-    print(snippet)
-    print(videoid)
 
 
-# df  = pd.read_csv('youTubeChannels.csv')
+#df  = pd.read_csv('youTubeChannels.csv')
 
 #df[['id', 'Creator', 'Category']]
 #channels = ['UC12lU5ymIvSpgl8KntDQUQA']
@@ -136,13 +129,102 @@ if __name__ == "__main__":
 # %%
 embed_codes = [item[0]['player']['embedHtml'] for item in video]
 
-embed_codes
 
 # %%
 meta = pd.DataFrame.from_dict(video_meta)
 video_meta_df = meta.assign(videID = video_id,
                             embeds = embed_codes)
+video_meta_df = video_meta_df.sort_values(by=['publishedAt'], ascending=False)
 video_meta_df.to_csv(os.path.join(path, 'videos_tbl.csv'))
 video_meta_df
+
+# %%
+today_title = date.today().strftime("%b %d, %Y")
+samples     = video_meta_df['title'][0:5]
+subtitles   = ['; '.join(samples[0 : 5])]
+
+# %%
+markdown_content = f"""
+---
+date: {today}
+title: 'Daily Update – {today_title}'
+format: 
+    html:
+      toc: false
+title-block-banner: true
+execute:
+    echo: false
+    warning: false
+    message: false
+---
+'{subtitles[0]}'
+
+```{{r}}
+
+library(tidyverse)
+googlesheets4::gs4_deauth()
+sheet <- googlesheets4::read_sheet('https://docs.google.com/spreadsheets/d/1bJIUEOh8yUg46dREnE_bXlha9K35nqkFk85CyQYn2eY/edit#gid=932148422',
+                                   sheet =  'YouTube Channels')
+
+videos_tbl <- read_csv('videos_tbl.csv') |> 
+  mutate(embeds = embeds |> 
+           str_replace_all('480', '100%') |> 
+           str_replace_all('270', '400'))
+
+```
+
+```{{r}}
+#| echo: false
+
+# A list of summaries:
+
+ 
+videos_joined <- videos_tbl |> 
+    left_join(sheet, by = join_by(channelId == id)) |> 
+    select(publishedAt,title, description, embeds, 
+           channelId, Category) |> 
+    filter(publishedAt >= lubridate::today()-1)
+
+videos <- videos_joined |>  
+    split(videos_joined$Category) 
+    
+
+headings <- names(videos)
+#videos
+```
+
+## Today's Videos
+
+::: panel-tabset
+```{{r, results='asis'}}
+#| warning: false
+
+
+for (i in seq_along(videos)) {{
+    cat("# ",headings[i],"\\n")
+    current_df <- videos[[i]]
+  
+    
+    for (j in seq_along(current_df$embeds)) {{
+        current_value <- current_df$embeds[j]
+        
+        current_title <- current_df$title[j]
+        cat("### ",current_title,"\\n")
+        cat(current_value)
+        cat("\\n")
+        cat("\\n") 
+         
+         
+         
+ }}
+}}
+```
+:::
+"""
+
+# Save to a Markdown file
+file_name = os.path.join(path,'index.qmd')
+with open(file_name, "w", encoding="utf-8") as file:
+    file.write(markdown_content)
 
 
