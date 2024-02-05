@@ -162,7 +162,7 @@ execute:
 ```{{r}}
 
 library(tidyverse)
-
+googlesheets4::gs4_deauth()
 sheet <- googlesheets4::read_sheet('https://docs.google.com/spreadsheets/d/1bJIUEOh8yUg46dREnE_bXlha9K35nqkFk85CyQYn2eY/edit#gid=932148422',
                                    sheet =  'YouTube Channels')
 
