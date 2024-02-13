@@ -1,0 +1,76 @@
+
+---
+date: 2024-02-13
+title: 'Daily Update – Feb 13, 2024'
+format: 
+    html:
+      toc: false
+title-block-banner: true
+execute:
+    echo: false
+    warning: false
+    message: false
+---
+'Vision Pro Review, International Business, Help For Entrepreneurs, &amp; The Super Bowl&#39;s Biggest Winner; HYPE MIC MONDAYS | Live From Atlanta 🔥; Truth Hurts #rizzaislam #bodypositive #bodypositivity #healthiswealth #ineverknewtv; Older Black Woman Says We&#39;re Not Getting Reparations; I&#39;ll look up ANYTHING in my 200 year old dictionary! LIVESTREAM'
+
+```{r}
+
+library(tidyverse)
+googlesheets4::gs4_deauth()
+sheet <- googlesheets4::read_sheet('https://docs.google.com/spreadsheets/d/1bJIUEOh8yUg46dREnE_bXlha9K35nqkFk85CyQYn2eY/edit#gid=932148422',
+                                   sheet =  'YouTube Channels')
+
+videos_tbl <- read_csv('videos_tbl.csv') |> 
+  mutate(embeds = embeds |> 
+           str_replace_all('480', '100%') |> 
+           str_replace_all('270', '400'))
+
+```
+
+```{r}
+#| echo: false
+
+# A list of summaries:
+
+ 
+videos_joined <- videos_tbl |> 
+    left_join(sheet, by = join_by(channelId == id)) |> 
+    select(publishedAt,title, description, embeds, 
+           channelId, Category) |> 
+    filter(publishedAt >= lubridate::today()-1)
+
+videos <- videos_joined |>  
+    split(videos_joined$Category) 
+    
+
+headings <- names(videos)
+#videos
+```
+
+## Today's Videos
+
+::: panel-tabset
+```{r, results='asis'}
+#| warning: false
+
+
+for (i in seq_along(videos)) {
+    cat("# ",headings[i],"\n")
+    current_df <- videos[[i]]
+  
+    
+    for (j in seq_along(current_df$embeds)) {
+        current_value <- current_df$embeds[j]
+        
+        current_title <- current_df$title[j]
+        cat("### ",current_title,"\n")
+        cat(current_value)
+        cat("\n")
+        cat("\n") 
+         
+         
+         
+ }
+}
+```
+:::
