@@ -89,7 +89,7 @@ def main(channelID):
 #df[['id', 'Creator', 'Category']]
 #channels = ['UC12lU5ymIvSpgl8KntDQUQA']
 
-channels = df['id']
+channels = df['channelId']
 
 
 if __name__ == "__main__":
@@ -148,6 +148,7 @@ markdown_content = f"""
 ---
 date: {today}
 title: 'Daily Update – {today_title}'
+author: 'Afromation Digital'
 format: 
     html:
       toc: false
@@ -162,25 +163,19 @@ execute:
 ```{{r}}
 
 library(tidyverse)
-googlesheets4::gs4_deauth()
-sheet <- googlesheets4::read_sheet('https://docs.google.com/spreadsheets/d/1bJIUEOh8yUg46dREnE_bXlha9K35nqkFk85CyQYn2eY/edit#gid=932148422',
-                                   sheet =  'YouTube Channels')
 
 videos_tbl <- read_csv('videos_tbl.csv') |> 
   mutate(embeds = embeds |> 
            str_replace_all('480', '100%') |> 
-           str_replace_all('270', '400'))
+           str_replace_all('270', '50%'))
+
 
 ```
 
 ```{{r}}
 #| echo: false
 
-# A list of summaries:
-
- 
 videos_joined <- videos_tbl |> 
-    left_join(sheet, by = join_by(channelId == id)) |> 
     select(publishedAt,title, description, embeds, 
            channelId, Category) |> 
     filter(publishedAt >= lubridate::today()-1)
@@ -190,7 +185,7 @@ videos <- videos_joined |>
     
 
 headings <- names(videos)
-#videos
+
 ```
 
 ## Today's Videos
