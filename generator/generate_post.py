@@ -181,7 +181,7 @@ videos_tbl <- read_csv('videos_tbl.csv') |>
 videos_joined <- videos_tbl |> 
     select(publishedAt,title, description, embeds, 
            channelId, category) |> 
-    filter(publishedAt >= lubridate::today()-1)
+    filter(publishedAt >= lubridate::ymd('{today}')-1)
 
 videos <- videos_joined |>  
     split(videos_joined$category) 
