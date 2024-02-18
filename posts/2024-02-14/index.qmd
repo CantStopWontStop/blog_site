@@ -16,14 +16,11 @@ execute:
 ```{r}
 
 library(tidyverse)
-googlesheets4::gs4_deauth()
-sheet <- googlesheets4::read_sheet('https://docs.google.com/spreadsheets/d/1bJIUEOh8yUg46dREnE_bXlha9K35nqkFk85CyQYn2eY/edit#gid=932148422',
-                                   sheet =  'YouTube Channels')
 
 videos_tbl <- read_csv('videos_tbl.csv') |> 
   mutate(embeds = embeds |> 
            str_replace_all('480', '100%') |> 
-           str_replace_all('270', '400'))
+           str_replace_all('270', '50%'))
 
 ```
 
@@ -34,13 +31,12 @@ videos_tbl <- read_csv('videos_tbl.csv') |>
 
  
 videos_joined <- videos_tbl |> 
-    left_join(sheet, by = join_by(channelId == id)) |> 
     select(publishedAt,title, description, embeds, 
-           channelId, Category) |> 
-    filter(publishedAt >= lubridate::today()-1)
+           channelId, category) |> 
+    filter(publishedAt >= lubridate::ymd('2024-02-14')-1)
 
 videos <- videos_joined |>  
-    split(videos_joined$Category) 
+    split(videos_joined$category) 
     
 
 headings <- names(videos)
