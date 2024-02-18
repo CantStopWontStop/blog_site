@@ -65,6 +65,8 @@ youtube = googleapiclient.discovery.build("youtube", "v3", credentials=creds)
 # %%
 video_meta = []
 video_id  = []
+category = []
+channel_category_dict = df.set_index('channelId')['Category'].to_dict()
 
 def main(channelID):
     request = youtube.search().list(
@@ -82,6 +84,7 @@ def main(channelID):
     videoid = response['items'][0]['id']['videoId']
     video_meta.append(snippet)
     video_id.append(videoid)
+    category.append(channel_category_dict.get(channelID))
 
 
 #df  = pd.read_csv('youTubeChannels.csv')
@@ -115,7 +118,6 @@ def main(id):
     video.append(response['items'])
 
 
-
 #df[['id', 'Creator', 'Category']]
 # channels = ['jh4ln6QcYVE']
 
@@ -133,7 +135,8 @@ embed_codes = [item[0]['player']['embedHtml'] for item in video]
 # %%
 meta = pd.DataFrame.from_dict(video_meta)
 video_meta_df = meta.assign(videID = video_id,
-                            embeds = embed_codes)
+                            embeds = embed_codes,
+                            category = category)
 video_meta_df = video_meta_df.sort_values(by=['publishedAt'], ascending=False)
 video_meta_df.to_csv(os.path.join(path, 'videos_tbl.csv'))
 video_meta_df
@@ -177,11 +180,11 @@ videos_tbl <- read_csv('videos_tbl.csv') |>
 
 videos_joined <- videos_tbl |> 
     select(publishedAt,title, description, embeds, 
-           channelId, Category) |> 
-    filter(publishedAt >= lubridate::today()-1)
+           channelId, category) |> 
+    filter(publishedAt >= lubridate::ymd('{today}')-1)
 
 videos <- videos_joined |>  
-    split(videos_joined$Category) 
+    split(videos_joined$category) 
     
 
 headings <- names(videos)
@@ -221,5 +224,3 @@ for (i in seq_along(videos)) {{
 file_name = os.path.join(path,'index.qmd')
 with open(file_name, "w", encoding="utf-8") as file:
     file.write(markdown_content)
-
-
