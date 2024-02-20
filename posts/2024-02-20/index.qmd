@@ -1,0 +1,71 @@
+
+---
+date: 2024-02-20
+title: 'Daily Update – Feb 20, 2024'
+author: 'Afromation Digital'
+format: 
+    html:
+      toc: false
+title-block-banner: true
+execute:
+    echo: false
+    warning: false
+    message: false
+---
+'Bitcoin Heads To Record High, Bezos Sells Amazon Stock, Cheap Chip Stocks, Government Antitrust; Good And Bad About The Bob Marley : One Love Movie (Review)  &#39;The Bald Head -N- The Dread&#39; Ep.163; Fani Willis, Nathan Wade and Why Black Lawyers For Reparations Isn&#39;t Working.; HYPE MIC MONDAYS | Live From Atlanta 🔥; The Hardened Heart Of Black America'
+
+```{r}
+
+library(tidyverse)
+
+videos_tbl <- read_csv('videos_tbl.csv') |> 
+  mutate(embeds = embeds |> 
+           str_replace_all('480', '100%') |> 
+           str_replace_all('270', '50%'))
+
+
+```
+
+```{r}
+#| echo: false
+
+videos_joined <- videos_tbl |> 
+    select(publishedAt,title, description, embeds, 
+           channelId, category) |> 
+    filter(publishedAt >= lubridate::ymd('2024-02-20')-1)
+
+videos <- videos_joined |>  
+    split(videos_joined$category) 
+    
+
+headings <- names(videos)
+
+```
+
+## Today's Videos
+
+::: panel-tabset
+```{r, results='asis'}
+#| warning: false
+
+
+for (i in seq_along(videos)) {
+    cat("# ",headings[i],"\n")
+    current_df <- videos[[i]]
+  
+    
+    for (j in seq_along(current_df$embeds)) {
+        current_value <- current_df$embeds[j]
+        
+        current_title <- current_df$title[j]
+        cat("### ",current_title,"\n")
+        cat(current_value)
+        cat("\n")
+        cat("\n") 
+         
+         
+         
+ }
+}
+```
+:::
