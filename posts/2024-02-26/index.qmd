@@ -1,9 +1,8 @@
 
 ---
-date: 2024-02-28
-title: 'Daily Update – Feb 28, 2024'
+date: 2024-02-26
+title: 'Daily Update – Feb 26, 2024'
 author: 'Afromation Digital'
-image: thumbnail.jpg
 format: 
     html:
       toc: false
@@ -12,12 +11,8 @@ execute:
     echo: false
     warning: false
     message: false
-
-categories:
-    - 'daily feed'
-
 ---
-'Make Our History Great Again; Gen. Traoré made a damning statement to white people and house negros; Paula Hurlock Explains What The Scripture &#39;Seek Ye First The Kingdom Of God..&#39; Really Means; ‘European Civilisation? There’s No Such Thing!’ #Shorts; Have Africans lost all basic respect for each other? 🤨🧐'
+'🙏🏿#petermorgan #peetahmorgan #morganheritage #reggae #rip #ineverknewtv; Eric Adams Is Giving Illegal Immigrants Black Folks &quot;Reparations&quot;......But Here&#39;s The Problem; The NCAA and College Athletes&#39; Wages; Here&#39;s Why Your Next Breath Should Be Fresh Air; WE ARE AFRICANS SERIES WITH PROF JAMES SMALL'
 
 ```{r}
 
@@ -36,11 +31,11 @@ videos_tbl <- read_csv('videos_tbl.csv') |>
 
 videos_joined <- videos_tbl |> 
     select(publishedAt,title, description, embeds, 
-           channelId, Category) |> 
-    filter(publishedAt >= lubridate::today()-1)
+           channelId, category) |> 
+    filter(publishedAt >= lubridate::ymd('2024-02-26')-1)
 
 videos <- videos_joined |>  
-    split(videos_joined$Category) 
+    split(videos_joined$category) 
     
 
 headings <- names(videos)
