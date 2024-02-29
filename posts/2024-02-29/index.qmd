@@ -1,0 +1,71 @@
+
+---
+date: 2024-02-29
+title: 'Daily Update – Feb 29, 2024'
+author: 'Afromation Digital'
+format: 
+    html:
+      toc: false
+title-block-banner: true
+execute:
+    echo: false
+    warning: false
+    message: false
+---
+'Is Rebuilding the Hood a Bad Idea? | Losing $100 Million, Money&#39;s Role in Relationships &amp; Boundaries; Them Folks Claim Europeans Aren&#39;t Stealing African Resources, It&#39;s Being Sold By Their Leaders; The Black Market Gas in Porto-Novo, Benin Comes From Nigeria. You Get It Off Of The Street. #benin; Julius Malema: Scared United Africa; Friday After Next&#39;s &#39;Officer B. Dix&#39; Responds To Katt Williams Beef &amp; Ice Cube - Behind The Role'
+
+```{r}
+
+library(tidyverse)
+
+videos_tbl <- read_csv('videos_tbl.csv') |> 
+  mutate(embeds = embeds |> 
+           str_replace_all('480', '100%') |> 
+           str_replace_all('270', '50%'))
+
+
+```
+
+```{r}
+#| echo: false
+
+videos_joined <- videos_tbl |> 
+    select(publishedAt,title, description, embeds, 
+           channelId, category) |> 
+    filter(publishedAt >= lubridate::ymd('2024-02-29')-1)
+
+videos <- videos_joined |>  
+    split(videos_joined$category) 
+    
+
+headings <- names(videos)
+
+```
+
+## Today's Videos
+
+::: panel-tabset
+```{r, results='asis'}
+#| warning: false
+
+
+for (i in seq_along(videos)) {
+    cat("# ",headings[i],"\n")
+    current_df <- videos[[i]]
+  
+    
+    for (j in seq_along(current_df$embeds)) {
+        current_value <- current_df$embeds[j]
+        
+        current_title <- current_df$title[j]
+        cat("### ",current_title,"\n")
+        cat(current_value)
+        cat("\n")
+        cat("\n") 
+         
+         
+         
+ }
+}
+```
+:::
