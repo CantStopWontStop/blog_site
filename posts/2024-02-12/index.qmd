@@ -1,4 +1,3 @@
-
 ---
 date: 2024-02-12
 title: 'Daily Update – Feb 12, 2024'
@@ -11,7 +10,8 @@ execute:
     warning: false
     message: false
 ---
-'How To Disrupt An Industry - David Shands - Social Proof Podcast ep. 436; Do Black People Need To Code Switch To Become Successful?; I JUST WANT TO GO HOME Coming up live tonight on Pan-African Daily TV; Denzel Washington In The Book Of Eli Never Forget the Past – Learning From The Masters; The ride from Freetown to Lungi, Sierra Leone on Sea Coach. #sierraleone #africa #travel #freetown'
+
+'How To Disrupt An Industry - David Shands - Social Proof Podcast ep. 436; Do Black People Need To Code Switch To Become Successful?; I JUST WANT TO GO HOME Coming up live tonight on Pan-African Daily TV; Denzel Washington In The Book Of Eli Never Forget the Past -- Learning From The Masters; The ride from Freetown to Lungi, Sierra Leone on Sea Coach. #sierraleone #africa #travel #freetown'
 
 ```{r}
 

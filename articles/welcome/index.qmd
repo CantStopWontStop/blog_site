@@ -1,0 +1,17 @@
+---
+title: "Welcome to the Blog"
+author: 'Afromation Digital'
+date: "2023-01-07"
+categories: [update]
+title-block-banner: true
+---
+
+This is the first post. Here on the Afromation blog, we put forth ideas critical to building the AfroSphere[^1].
+
+[^1]: The cultural, political, and economic congregation of Africans and people of African decent
+
+::: column-margin
+![](https://images.unsplash.com/photo-1626695436755-3e288720849c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80)
+:::
+
+Welcome!

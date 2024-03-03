@@ -42,11 +42,22 @@ $min-contrast-ratio:   1.85 !default;
 
 // Body
 
-$body-bg:            $black !default;
-$body-color:         $white !default;
+$body-bg:            $white !default;
+$body-color:         $black !default;
+$color:              $black !default;
 
 .content p {
   line-height: 1.7 !important;
+  color:       $black;
+
+}
+
+p {
+  color:       $black;
+}
+
+h3 {
+  color:       $black;
 }
 
 // Fonts
@@ -153,13 +164,13 @@ div.quarto-post .listing-categories .listing-category {
 
 .listing-title {
   font-family: "Whitney SSm A", "Whitney SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
-  color: $white !important;
+  color: $black !important;
   font-weight: 700;
 }
 
 .listing-date {
   font-family: "Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
-  color: $white !important;
+  color: $black !important;
   text-transform: uppercase;
   font-size: .8rem !important;
   font-weight: 700;
@@ -167,7 +178,7 @@ div.quarto-post .listing-categories .listing-category {
 
 .listing-author {
   font-family: "Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
-  color: #bfbfbf !important;
+  color: $gray-900 !important;
 }
 
 .listing-reading-time {
@@ -179,12 +190,12 @@ div.quarto-post .listing-categories .listing-category {
 .listing-category {
   text-transform: uppercase;
   font-weight: 500;
-  color: $white !important;
+  color: $black !important;
   font-family: "Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
-.thumnail-image {
-  border: 1px solid white;
+.thumbnail-image {
+  border: 4px double $red;
 }
 
 // Callout Styles
@@ -215,17 +226,21 @@ main.quarto-banner-title-block #title-block-header.quarto-title-block.default .q
 
 #title-block-header.quarto-title-block.default .quarto-title-meta-heading {
   text-transform: uppercase;
-  font-size: .7em;
+  font-size: 1em;
   opacity: .8;
-  font-weight: 400;
-  color: $white;
+  font-weight: 600;
+  color: $black;
   font-family: "Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 #title-block-header.quarto-title-block.default .quarto-title-meta-contents p {
-  font-size: .95em;
+  font-size: 1.2em;
   margin-bottom: 1em;
   font-family: "Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+  color: $black;
+    font-weight: 400;
+
+
 }
 
 #title-block-header.quarto-title-block.default .description, #title-block-header.quarto-title-block.default .abstract {
@@ -290,7 +305,7 @@ h1,h2 {
 h3,h4,h5 {
   font-family: "Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-weight: 500;
-  color: #7d7d7d;
+  color: $black;
 }
 
 blockquote {

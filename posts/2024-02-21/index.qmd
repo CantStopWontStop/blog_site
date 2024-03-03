@@ -1,4 +1,3 @@
-
 ---
 date: 2024-02-21
 title: 'Daily Update – Feb 21, 2024'
@@ -12,7 +11,8 @@ execute:
     warning: false
     message: false
 ---
-'Ancient Aethiopians; My Worst Financial Mistake Was Buying A House!; 5ASIDE POD EP. 50: HARRY KANE CURSED BAYERN | MBAPPE LIGUE 1 GOAT | AMERICAN SOCCER ACADEMY SYSTEM; Why You Need To Trademark Your Business Name - Amy Oraefo - Social Proof Podcast ep. 439; Voodoo Festival Tour Vlog: Would You Stay At This Hotel On Water?'
+
+'Ancient Aethiopians; My Worst Financial Mistake Was Buying A House!; 5ASIDE POD EP. 50: HARRY KANE CURSED BAYERN \| MBAPPE LIGUE 1 GOAT \| AMERICAN SOCCER ACADEMY SYSTEM; Why You Need To Trademark Your Business Name - Amy Oraefo - Social Proof Podcast ep. 439; Voodoo Festival Tour Vlog: Would You Stay At This Hotel On Water?'
 
 ```{r}
 

@@ -6,12 +6,13 @@ project:
 
 website:
   title: "afromation"
-  site-url: "https://drum.afromation.io"
+  site-url: "https://afromation.io"
   favicon: assets/images/afromation_favicon.png
   navbar:
     background: dark
     right:
-      - about.qmd
+      - blog.qmd
+      - articles.qmd
       - icon: instagram
         href: https://www.instagram.com/afromation.io/
       - icon: twitter
@@ -20,9 +21,10 @@ website:
 format:
   html:
     theme:
-      dark: assets/css/custom.scss
+      # dark: assets/css/custom.scss
+      light: [flatly, assets/css/custom.scss]
     css: assets/css/styles.css
-    background-color: "black"
+    background-color: "white"
     toc: true
     include-after-body: subscribe.html
 
