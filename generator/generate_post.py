@@ -4,6 +4,10 @@ import pandas as pd
 from datetime import date
 from shutil import copy as cpy
 import re
+import requests
+from PIL import Image
+from io import BytesIO
+import random
 
 import googleapiclient.discovery
 import googleapiclient.errors
@@ -99,6 +103,9 @@ if __name__ == "__main__":
     for chan in channels:
         main(chan)
 
+# Get thumbnails
+thumbnail_urls = [item.get('thumbnails', {}).get('high', {}).get('url', None) for item in video_meta]
+
 # %%
 meta = pd.DataFrame.from_dict(video_meta)
 video_meta_df = meta.assign(videoID = video_id)
@@ -139,12 +146,13 @@ video_meta_df = meta.assign(videID = video_id,
                             category = category)
 video_meta_df = video_meta_df.sort_values(by=['publishedAt'], ascending=False)
 video_meta_df.to_csv(os.path.join(path, 'videos_tbl.csv'))
-video_meta_df
+
 
 # %%
 today_title = date.today().strftime("%b %d, %Y")
 samples     = video_meta_df['title'][0:5]
 subtitles   = ['; '.join(samples[0 : 5])]
+thumbnails  = random.sample(thumbnail_urls,4)
 
 # %%
 markdown_content = f"""
@@ -152,6 +160,7 @@ markdown_content = f"""
 date: {today}
 title: 'Daily Update – {today_title}'
 author: 'Afromation Digital'
+image: thumbnail.jpg
 format: 
     html:
       toc: false
@@ -170,7 +179,7 @@ library(tidyverse)
 videos_tbl <- read_csv('videos_tbl.csv') |> 
   mutate(embeds = embeds |> 
            str_replace_all('480', '100%') |> 
-           str_replace_all('270', '50%'))
+           str_replace_all('270', '65%'))
 
 
 ```
@@ -224,3 +233,25 @@ for (i in seq_along(videos)) {{
 file_name = os.path.join(path,'index.qmd')
 with open(file_name, "w", encoding="utf-8") as file:
     file.write(markdown_content)
+    
+    
+    
+def open_image_from_url(url):
+    response = requests.get(url)
+    return Image.open(BytesIO(response.content))
+
+# Download and open images
+images = [open_image_from_url(url) for url in thumbnails]
+
+# Create a 2x2 collage
+collage = Image.new('RGB', (2 * images[0].width, 2 * images[0].height))
+
+# Paste images into the collage
+collage.paste(images[0], (0, 0))
+collage.paste(images[1], (images[0].width, 0))
+collage.paste(images[2], (0, images[0].height))
+collage.paste(images[3], (images[0].width, images[0].height))
+
+
+collage.save(os.path.join(path,'thumbnail.jpg'))
+
