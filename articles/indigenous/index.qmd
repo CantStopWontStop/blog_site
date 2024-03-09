@@ -3,7 +3,7 @@ title: "What you mean you not African?"
 author: "Afromation Digital"
 format: html
 date: "2024-02-08"
-draft: false
+draft: true
 categories: 
     - education
     - history
