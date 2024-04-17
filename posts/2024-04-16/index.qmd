@@ -1,34 +1,31 @@
-
 ---
-title: "HOME"
-page-layout: full
+date: 2024-04-16
+title: 'Daily Update'
+author: 'Afromation Digital'
+image: thumbnail.jpg
+format: 
+    html:
+      toc: false
 title-block-banner: true
-format:
-  html:
-    css: assets/css/feed_header.css
-    
-listing:
-  contents: stories
-  id: stories
-  sort: "date desc"
-  type: grid
-  categories: false
-  sort-ui: false
-  filter-ui: false
+execute:
+    echo: false
+    warning: false
+    message: false
 
+categories:
+    - 'daily feed'
 ---
 
-::: {#stories}
-:::
+'Why whites always get to be in everything black people do \| Farrakhan; Ukraine Opening Embassies Across Africa To Counter Russia; Pres. Ramaphosa Angered Over U.S. Anti-South African Bill Passed By House Foreign Affairs; UPDATES: Mali obtains 150 million liters of diesel from Niger; Aisha Bowe on Being a NASA Rocket Scientist, Space Travel, Jeff Bezos’ Blue Origin Rocket, & Aliens'
 
 ```{r}
 
 library(tidyverse)
 
-videos_tbl <- read_csv('c:/Digital_Projects/GitHub/afromation/blog_site/posts/2024-04-16/videos_tbl.csv') |> 
+videos_tbl <- read_csv('videos_tbl.csv') |> 
   mutate(embeds = embeds |> 
            str_replace_all('480', '100%') |> 
-           str_replace_all('height="270"', ''))
+           str_replace_all('270', '50%'))
 
 
 ```
@@ -38,18 +35,18 @@ videos_tbl <- read_csv('c:/Digital_Projects/GitHub/afromation/blog_site/posts/20
 
 videos_joined <- videos_tbl |> 
     select(publishedAt,title, description, embeds, 
-           channelId, channelTitle, Category) |> 
+           channelId, Category) |> 
     filter(publishedAt >= lubridate::today()-1)
-
 
 videos <- videos_joined |>  
     split(videos_joined$Category) 
     
 
 headings <- names(videos)
+
 ```
 
-# [Updates – April 16, 2024]{.updates}
+## April 16, 2024
 
 ```{r, results='asis'}
 #| warning: false
@@ -89,4 +86,3 @@ for (i in seq_along(videos)) {
 }
 
 ```
-

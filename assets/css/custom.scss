@@ -268,10 +268,8 @@ main.quarto-banner-title-block #title-block-header.quarto-title-block.default .q
 
 .navbar {
   font-family: "Helvetica Neue", "Segoe UI", sans-serif;
-  font-size: $font-size-sm;
-  -webkit-box-shadow: 1px 1px 18px #4d4d4d;
-  -moz-box-shadow: 1px 1px 18px #4d4d4d;
-  box-shadow: 1px 1px 18px #4d4d4d;
+  font-weight: 500;
+  font-size: 1.2rem;
 
   &.bg-dark {
     background-color: $dark !important;
@@ -298,9 +296,7 @@ p {
   color: $white;
 }
 
-h1,h2 {
-  font-family: $font-family-sans-serif;
-}
+
 
 h3,h4,h5 {
   font-family: "Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -313,7 +309,29 @@ blockquote {
 }
 
 footer {
-  font-size: $font-size-sm;
+  font-family: "Helvetica Neue", "Segoe UI", sans-serif;
+  font-weight: 500;
+  font-size: 1.5rem;
+  -webkit-box-shadow: 1px 1px 18px #4d4d4d;
+  -moz-box-shadow: 1px 1px 18px #4d4d4d;
+  box-shadow: 1px 1px 18px #4d4d4d;
+
+  &.bg-dark {
+    background-color: $dark !important;
+  }
+
+  &.bg-light {
+    background-color: $white !important;
+    border: 1px solid rgba(0, 0, 0, .1);
+
+    &.navbar-fixed-top {
+      border-width: 0 0 1px;
+    }
+
+    &.navbar-fixed-bottom {
+      border-width: 1px 0 0;
+    }
+  }
 }
 
 .lead {
@@ -572,10 +590,12 @@ code {
 
 h1 {
     font-weight: 800;
-    color: #f2f2f2;
+    color: $black;
     font-family: "Gotham SSm A", "Gotham SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     letter-spacing: 0px !important;
 }
+
+
 
 ::selection {
 color: #2d2d2d;

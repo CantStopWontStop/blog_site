@@ -11,13 +11,24 @@ website:
   navbar:
     background: dark
     right:
-      - blog.qmd
-      - articles.qmd
+      - updates.qmd
+      - stories.qmd
       - icon: instagram
         href: https://www.instagram.com/afromation.io/
       - icon: twitter
         href: https://twitter.com/afromation_io
+  page-footer:
+    background: dark
+    center: 
+      - index.qmd
+      - updates.qmd
+      - stories.qmd
 
+execute:
+    echo: false
+    warning: false
+    message: false
+    
 format:
   html:
     theme:

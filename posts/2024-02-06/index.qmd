@@ -1,4 +1,3 @@
-
 ---
 date: 2024-02-06
 title: 'Daily Update – Feb 06, 2024'
@@ -11,7 +10,8 @@ execute:
     warning: false
     message: false
 ---
-'Meta Stock Surge, 2024 Market Crash?, Political Power, Trump vs Biden &amp; Black Media ft Roland Martin; HYPE MIC MONDAYS | Live From Atlanta 🔥; President Kagame Africa must STOP begging, POWERFUL Lecture; When Black Power Gets Whitewashed | Ron Karenga &amp; Kwanzaa Breakdown Clip; CAN YOU BE A PAN-AFRICANIST AND VOTE REPUBLICAN ?'
+
+'Meta Stock Surge, 2024 Market Crash?, Political Power, Trump vs Biden & Black Media ft Roland Martin; HYPE MIC MONDAYS \| Live From Atlanta 🔥; President Kagame Africa must STOP begging, POWERFUL Lecture; When Black Power Gets Whitewashed \| Ron Karenga & Kwanzaa Breakdown Clip; CAN YOU BE A PAN-AFRICANIST AND VOTE REPUBLICAN ?'
 
 ```{r}
 
