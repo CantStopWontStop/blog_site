@@ -16,6 +16,7 @@ from google.oauth2 import service_account
 
 # %%
 today = date.today().strftime("%Y-%m-%d")
+dir_path = '../'
 post_path ='../posts'
 path = os.path.join(post_path, today)
 
@@ -254,4 +255,104 @@ collage.paste(images[3], (images[0].width, images[0].height))
 
 
 collage.save(os.path.join(path,'thumbnail.jpg'))
+
+home_markdown_content = f"""
+---
+title: "Home"
+page-layout: full
+title-block-banner: true
+format:
+  html:
+    css: assets/css/feed_header.css
+    
+listing:
+  contents: stories
+  id: stories
+  sort: "date desc"
+  type: grid
+  categories: false
+  sort-ui: false
+  filter-ui: false
+
+---
+# [Stories]{{.updates}}
+::: {{#stories}}
+:::
+
+```{{r}}
+
+library(tidyverse)
+
+videos_tbl <- read_csv('{post_path}/videos_tbl.csv') |> 
+  mutate(embeds = embeds |> 
+           str_replace_all('480', '100%') |> 
+           str_replace_all('height="270"', ''))
+
+
+```
+
+```{{r}}
+#| echo: false
+
+videos_joined <- videos_tbl |> 
+    select(publishedAt,title, description, embeds, 
+           channelId, channelTitle, Category) |> 
+    filter(publishedAt >= lubridate::today()-1)
+
+
+videos <- videos_joined |>  
+    split(videos_joined$Category) 
+    
+
+headings <- names(videos)
+```
+
+# [Updates – {today_title}]{{.updates}}
+
+```{{r, results='asis'}}
+#| warning: false
+
+for (i in seq_along(videos)) {{
+    cat("## ", headings[i], "\\n")
+    current_df <- videos[[i]]
+    
+    cat("::: {{#listing-listing .quarto-listing .quarto-listing-container-grid}}", '\\n')
+    cat('::: {{.list .grid .quarto-listing-cols-3}}', '\\n')
+    
+    for (i in seq_along(current_df$embeds)) {{
+      if (!is.na(current_df$embeds[i])) {{  # Check if the embed is not empty
+        cat("::: g-col-1", '\\n')
+        cat("::: {{.quarto-grid-item .card .h-100 .card-left}}", '\\n')
+        cat('::: {{.listing-item-img-placeholder .card-img-top style="height: 150px;"}}', '\\n')
+        cat(current_df$embeds[i],'\\n')
+        cat(":::",'\\n')
+        cat("::: {{.card-body .post-contents}}",'\\n')
+        cat('<h5 class="card-title listing-title">', current_df$title[i],'</h5> \\n')
+        cat("::: {{.card-attribution .card-text-small .justify}} ",'\\n')
+        cat("::: listing-author ",'\\n')
+        cat(current_df$channelTitle[i],'\\n')
+        cat(":::",'\\n')
+        cat('\\n')
+        cat("::: listing-date ",'\\n')
+        cat(format(current_df$publishedAt[i], "%b %d"),'\\n')
+        cat(":::",'\\n')
+        cat(":::",'\\n')
+        cat(":::",'\\n')
+        cat(":::",'\\n')
+        cat(":::",'\\n')
+      }}
+  }}
+    cat(":::",'\\n')
+    cat(":::",'\\n')
+}}
+
+```
+
+"""
+
+# Save to a Markdown file
+file_name = os.path.join(dir_path,'index.qmd')
+with open(file_name, "w", encoding="utf-8") as file:
+    file.write(home_markdown_content)
+
 
