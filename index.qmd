@@ -29,7 +29,7 @@ execute:
 
 library(tidyverse)
 
-videos_tbl <- read_csv('posts/2024-04-22/videos_tbl.csv') |> 
+videos_tbl <- read_csv('posts/2024-04-24/videos_tbl.csv') |> 
   mutate(embeds = embeds |> 
            str_replace_all('480', '100%') |> 
            str_replace_all('height="270"', ''))
@@ -43,7 +43,7 @@ videos_tbl <- read_csv('posts/2024-04-22/videos_tbl.csv') |>
 videos_joined <- videos_tbl |> 
     select(publishedAt,title, description, embeds, 
            channelId, channelTitle, category) |> 
-    filter(publishedAt >= lubridate::ymd('2024-04-22')-1)
+    filter(publishedAt >= lubridate::ymd('2024-04-24')-1)
 
 
 videos <- videos_joined |>  
@@ -53,7 +53,7 @@ videos <- videos_joined |>
 headings <- names(videos)
 ```
 
-# [Updates – Apr 22, 2024]{.updates}
+# [Updates – Apr 24, 2024]{.updates}
 
 ```{r, results='asis'}
 #| warning: false
