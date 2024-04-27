@@ -1,14 +1,14 @@
 
 ---
-title: "HOME"
+title: "Home"
 page-layout: full
 title-block-banner: true
 format:
   html:
-    css: assets/css/feed_header.css
+    css: assets/css/home_header.css
     
 listing:
-  contents: stories
+  contents: articles
   id: stories
   sort: "date desc"
   type: grid
@@ -29,7 +29,7 @@ execute:
 
 library(tidyverse)
 
-videos_tbl <- read_csv('posts/2024-04-26/videos_tbl.csv') |> 
+videos_tbl <- read_csv('posts/2024-04-27/videos_tbl.csv') |> 
   mutate(embeds = embeds |> 
            str_replace_all('480', '100%') |> 
            str_replace_all('height="270"', ''))
@@ -43,7 +43,7 @@ videos_tbl <- read_csv('posts/2024-04-26/videos_tbl.csv') |>
 videos_joined <- videos_tbl |> 
     select(publishedAt,title, description, embeds, 
            channelId, channelTitle, category) |> 
-    filter(publishedAt >= lubridate::ymd('2024-04-26')-1)
+    filter(publishedAt >= lubridate::ymd('2024-04-27')-1)
 
 
 videos <- videos_joined |>  
@@ -53,7 +53,7 @@ videos <- videos_joined |>
 headings <- names(videos)
 ```
 
-# [Updates – Apr 26, 2024]{.updates}
+# [Updates – Apr 27, 2024]{.updates}
 
 ```{r, results='asis'}
 #| warning: false
