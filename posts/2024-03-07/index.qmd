@@ -1,0 +1,123 @@
+---
+title: 'Daily Update – Mar 07, 2024'
+image: thumbnail.jpg
+format: 
+    html:
+      toc: true
+title-block-banner: true
+execute:
+    echo: false
+    warning: false
+    message: false
+
+categories:
+    - 'daily feed'
+    
+---
+
+```{r}
+
+library(tidyverse)
+
+videos_tbl <- read_csv('videos_tbl.csv') |> 
+  mutate(embeds = embeds |> 
+           str_replace_all('480', '100%') |> 
+           str_replace_all('height="270"', ''))
+
+
+```
+
+```{r}
+#| echo: false
+
+videos_joined <- videos_tbl |> 
+    select(publishedAt,title, description, embeds, 
+           channelId, channelTitle, Category) 
+
+videos <- videos_joined |>  
+    split(videos_joined$Category) 
+    
+
+headings <- names(videos)
+
+```
+
+<div>
+
+```{r, results='asis', execute=FALSE}
+#| warning: false
+
+
+# cat('<div class="container">', '\n')
+# 
+# for (i in seq_along(videos)) {
+#     cat('<div class="col-md-4">', '\n')  # Use col-md-4 for a 3-column grid in Bootstrap
+#     cat("# ", headings[i], "\n")
+#     cat('</div>', '\n')  # Close the first column
+#     cat('<div class="row">', '\n')
+# 
+#     current_df <- videos[[i]]
+# 
+#     for (j in seq_along(current_df$embeds)) {
+#         current_value <- current_df$embeds[j]
+#         current_title <- current_df$title[j]
+# 
+#         # Each video in a 3-column grid
+#         cat('<div class="col-sm">', '\n')
+#       #  cat('<p>',current_title, '</p>',' \n')
+#         cat(current_value)
+#         cat('</div>', '\n')
+# 
+#         # If you've reached three videos, close the row and open a new one
+#         # if (j %% 3 == 0 && j != length(current_df$embeds)) {
+#         #     cat('</div>', '\n')  # Close the current row
+#         #     cat('<div class="row">', '\n')  # Open a new row
+#         # }
+#     }
+# 
+#     cat('</div>', '\n')
+# }
+# 
+# cat('</div>', '\n')
+```
+
+</div>
+
+```{r, results='asis'}
+#| warning: false
+
+for (i in seq_along(videos)) {
+    cat("## ", headings[i], "\n")
+    current_df <- videos[[i]]
+    
+    cat("::: {#listing-listing .quarto-listing .quarto-listing-container-grid}", '\n')
+    cat('::: {.list .grid .quarto-listing-cols-3}', '\n')
+    
+    for (i in seq_along(current_df$embeds)) {
+      if (!is.na(current_df$embeds[i])) {  # Check if the embed is not empty
+        cat("::: g-col-1", '\n')
+        cat("::: {.quarto-grid-item .card .h-100 .card-left}", '\n')
+        cat('::: {.listing-item-img-placeholder .card-img-top style="height: 150px;"}', '\n')
+        cat(current_df$embeds[i],'\n')
+        cat(":::",'\n')
+        cat("::: {.card-body .post-contents}",'\n')
+        cat('<h5 class="card-title listing-title">', current_df$title[i],'</h5> \n')
+        cat("::: {.card-attribution .card-text-small .justify} ",'\n')
+        cat("::: listing-author ",'\n')
+        cat(current_df$channelTitle[i],'\n')
+        cat(":::",'\n')
+        cat('\n')
+        cat("::: listing-date ",'\n')
+        cat(format(current_df$publishedAt[i], "%b %d"),'\n')
+        cat(":::",'\n')
+        cat(":::",'\n')
+        cat(":::",'\n')
+        cat(":::",'\n')
+        cat(":::",'\n')
+      }
+  }
+    cat(":::",'\n')
+    cat(":::",'\n')
+}
+
+```

@@ -1,0 +1,26 @@
+---
+title: "Daily Updates"
+page-layout: full
+title-block-banner: true
+about:
+  template: jolla
+  links:
+    - icon: twitter
+      text: afromation_io
+      href: https://twitter.com/afromation_io
+    - icon: instagram
+      text: afromation.io
+      href: https://www.instagram.com/afromation.io/
+    - icon: tiktok
+      text: afromation_io
+      href: https://github.com
+format:
+  html:
+    css: assets/css/home_header.css
+listing:
+  contents: posts
+  sort: "date desc"
+  type: grid
+  sort-ui: false
+  filter-ui: false    
+---

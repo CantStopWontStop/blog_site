@@ -1,4 +1,3 @@
-
 ---
 date: 2024-02-18
 title: 'Daily Update – Feb 18, 2024'
@@ -12,7 +11,8 @@ execute:
     warning: false
     message: false
 ---
-'Lessons on Leadership: The Importance of Purpose and Impact; We React Live to Metatron&#39;s Response to My Video - @kingmono Joins the LIVE!; 🔴 [LIVE]: Ethiopian PM Abiy Ahmed Powerful Speech at AU Summit; Do People Want Recognition Or Money? - Donni Wiggins - Social Proof Podcast ep. 438; i had NO other choice , AFRICAN VILLAGE !!!'
+
+'Lessons on Leadership: The Importance of Purpose and Impact; We React Live to Metatron's Response to My Video - @kingmono Joins the LIVE!; 🔴 \[LIVE\]: Ethiopian PM Abiy Ahmed Powerful Speech at AU Summit; Do People Want Recognition Or Money? - Donni Wiggins - Social Proof Podcast ep. 438; i had NO other choice , AFRICAN VILLAGE !!!'
 
 ```{r}
 
