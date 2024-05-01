@@ -1,4 +1,3 @@
-
 ---
 date: 2024-04-26
 title: 'Daily Update – Apr 26, 2024'
