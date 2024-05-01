@@ -156,8 +156,7 @@ subtitles   = ['; '.join(samples[0 : 5])]
 thumbnails  = random.sample(thumbnail_urls,4)
 
 # %%
-markdown_content = f"""
----
+markdown_content = f"""---
 date: {today}
 title: 'Daily Update – {today_title}'
 author: 'Afromation Digital'
@@ -256,8 +255,7 @@ collage.paste(images[3], (images[0].width, images[0].height))
 
 collage.save(os.path.join(path,'thumbnail.jpg'))
 
-home_markdown_content = f"""
----
+home_markdown_content = f"""---
 title: "HOME"
 page-layout: full
 title-block-banner: true
