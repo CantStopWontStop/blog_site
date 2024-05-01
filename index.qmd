@@ -8,7 +8,7 @@ format:
     css: assets/css/home_header.css
     
 listing:
-  contents: articles
+  contents: stories
   id: stories
   sort: "date desc"
   type: grid
