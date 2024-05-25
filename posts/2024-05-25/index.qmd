@@ -1,0 +1,71 @@
+---
+date: 2024-05-25
+title: 'Daily Update – May 25, 2024'
+author: 'Afromation Digital'
+image: thumbnail.jpg
+format: 
+    html:
+      toc: false
+title-block-banner: true
+execute:
+    echo: false
+    warning: false
+    message: false
+---
+'Rwanda Bound! What should I do!?; Rwanda Bound! What should I do!?; Why Black People Love Hennessy - Story You Should Know; Poor whites in South Africa go after African American &quot;Go Back To America&quot;; Reelblack Podcast Returns 5/25 Choose The Right Partner with Jason Clue and Mike D.'
+
+```{r}
+
+library(tidyverse)
+
+videos_tbl <- read_csv('videos_tbl.csv') |> 
+  mutate(embeds = embeds |> 
+           str_replace_all('480', '100%') |> 
+           str_replace_all('270', '65%'))
+
+
+```
+
+```{r}
+#| echo: false
+
+videos_joined <- videos_tbl |> 
+    select(publishedAt,title, description, embeds, 
+           channelId, category) |> 
+    filter(publishedAt >= lubridate::ymd('2024-05-25')-1)
+
+videos <- videos_joined |>  
+    split(videos_joined$category) 
+    
+
+headings <- names(videos)
+
+```
+
+## Today's Videos
+
+::: panel-tabset
+```{r, results='asis'}
+#| warning: false
+
+
+for (i in seq_along(videos)) {
+    cat("# ",headings[i],"\n")
+    current_df <- videos[[i]]
+  
+    
+    for (j in seq_along(current_df$embeds)) {
+        current_value <- current_df$embeds[j]
+        
+        current_title <- current_df$title[j]
+        cat("### ",current_title,"\n")
+        cat(current_value)
+        cat("\n")
+        cat("\n") 
+         
+         
+         
+ }
+}
+```
+:::
