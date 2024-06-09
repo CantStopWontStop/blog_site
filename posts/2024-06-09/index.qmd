@@ -1,0 +1,71 @@
+---
+date: 2024-06-09
+title: 'Daily Update – Jun 09, 2024'
+author: 'Afromation Digital'
+image: thumbnail.jpg
+format: 
+    html:
+      toc: false
+title-block-banner: true
+execute:
+    echo: false
+    warning: false
+    message: false
+---
+'Reelblack One is live! | Wellness Check 6/8/2024; They are not us We are not them; MARCH Palestine Protesters Surround White House in Washington D.C. LIVE June 8th; Byron Donalds&#39; Controversial Jim Crow Remarks; Predicting Future Returns: Analyzing a Market Leader&#39;s Bold Move'
+
+```{r}
+
+library(tidyverse)
+
+videos_tbl <- read_csv('videos_tbl.csv') |> 
+  mutate(embeds = embeds |> 
+           str_replace_all('480', '100%') |> 
+           str_replace_all('270', '65%'))
+
+
+```
+
+```{r}
+#| echo: false
+
+videos_joined <- videos_tbl |> 
+    select(publishedAt,title, description, embeds, 
+           channelId, category) |> 
+    filter(publishedAt >= lubridate::ymd('2024-06-09')-1)
+
+videos <- videos_joined |>  
+    split(videos_joined$category) 
+    
+
+headings <- names(videos)
+
+```
+
+## Today's Videos
+
+::: panel-tabset
+```{r, results='asis'}
+#| warning: false
+
+
+for (i in seq_along(videos)) {
+    cat("# ",headings[i],"\n")
+    current_df <- videos[[i]]
+  
+    
+    for (j in seq_along(current_df$embeds)) {
+        current_value <- current_df$embeds[j]
+        
+        current_title <- current_df$title[j]
+        cat("### ",current_title,"\n")
+        cat(current_value)
+        cat("\n")
+        cat("\n") 
+         
+         
+         
+ }
+}
+```
+:::
