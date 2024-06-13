@@ -1,0 +1,71 @@
+---
+date: 2024-06-13
+title: 'Daily Update – Jun 13, 2024'
+author: 'Afromation Digital'
+image: thumbnail.jpg
+format: 
+    html:
+      toc: false
+title-block-banner: true
+execute:
+    echo: false
+    warning: false
+    message: false
+---
+'How Not To Die: Health, Mental Wellness, Moon Landings Conspiracies, &amp; Foreign Policy Plots Revealed; Africans On Palestine: Why We Care; Why Are The Delineation Movement Lead By Black Americans Bringing Calls For Unity All Of A Sudden?; What&#39;s Going On In The Congo and Why Are People Pointing The Finger At Kagame; Angela Means Reveals She Hasn&#39;t Spoken To Chris Tucker Since &#39;Friday&#39;: &quot;No One Owes Me Anything&quot;'
+
+```{r}
+
+library(tidyverse)
+
+videos_tbl <- read_csv('videos_tbl.csv') |> 
+  mutate(embeds = embeds |> 
+           str_replace_all('480', '100%') |> 
+           str_replace_all('270', '65%'))
+
+
+```
+
+```{r}
+#| echo: false
+
+videos_joined <- videos_tbl |> 
+    select(publishedAt,title, description, embeds, 
+           channelId, category) |> 
+    filter(publishedAt >= lubridate::ymd('2024-06-13')-1)
+
+videos <- videos_joined |>  
+    split(videos_joined$category) 
+    
+
+headings <- names(videos)
+
+```
+
+## Today's Videos
+
+::: panel-tabset
+```{r, results='asis'}
+#| warning: false
+
+
+for (i in seq_along(videos)) {
+    cat("# ",headings[i],"\n")
+    current_df <- videos[[i]]
+  
+    
+    for (j in seq_along(current_df$embeds)) {
+        current_value <- current_df$embeds[j]
+        
+        current_title <- current_df$title[j]
+        cat("### ",current_title,"\n")
+        cat(current_value)
+        cat("\n")
+        cat("\n") 
+         
+         
+         
+ }
+}
+```
+:::
