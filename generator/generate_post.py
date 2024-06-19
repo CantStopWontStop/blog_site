@@ -50,7 +50,7 @@ df = pd.read_csv(new_url)
 # %%
 SCOPES = ["https://www.googleapis.com/auth/youtube.readonly"]
 
-SERVICE_ACCOUNT_FILE =  "/root/afromation-key.json"
+SERVICE_ACCOUNT_FILE =  "afromation-key.json"
 
 
 def get_authenticated_service():
@@ -64,14 +64,14 @@ creds = service_account.Credentials.from_service_account_file(
         SERVICE_ACCOUNT_FILE, scopes=SCOPES
     )
 
+creds
+
 # %%
 youtube = googleapiclient.discovery.build("youtube", "v3", credentials=creds)
 
 # %%
 video_meta = []
 video_id  = []
-category = []
-channel_category_dict = df.set_index('channelId')['Category'].to_dict()
 
 def main(channelID):
     request = youtube.search().list(
@@ -89,8 +89,6 @@ def main(channelID):
     videoid = response['items'][0]['id']['videoId']
     video_meta.append(snippet)
     video_id.append(videoid)
-    category.append(channel_category_dict.get(channelID))
-
 
 #df  = pd.read_csv('youTubeChannels.csv')
 
@@ -104,12 +102,14 @@ if __name__ == "__main__":
     for chan in channels:
         main(chan)
 
-# Get thumbnails
+# %%
 thumbnail_urls = [item.get('thumbnails', {}).get('high', {}).get('url', None) for item in video_meta]
 
 # %%
 meta = pd.DataFrame.from_dict(video_meta)
-video_meta_df = meta.assign(videoID = video_id)
+video_meta_df = meta.assign(videoID = video_id,
+                            thumbnail_url = thumbnail_urls)
+
 
 
 # %%
@@ -126,6 +126,7 @@ def main(id):
     video.append(response['items'])
 
 
+
 #df[['id', 'Creator', 'Category']]
 # channels = ['jh4ln6QcYVE']
 
@@ -139,26 +140,25 @@ if __name__ == "__main__":
 # %%
 embed_codes = [item[0]['player']['embedHtml'] for item in video]
 
-
 # %%
 meta = pd.DataFrame.from_dict(video_meta)
 video_meta_df = meta.assign(videID = video_id,
-                            embeds = embed_codes,
-                            category = category)
+                            embeds = embed_codes)
+video_meta_df = pd.merge(video_meta_df, df, on='channelId')
 video_meta_df = video_meta_df.sort_values(by=['publishedAt'], ascending=False)
 video_meta_df.to_csv(os.path.join(path, 'videos_tbl.csv'))
 
-
 # %%
-today_title = date.today().strftime("%b %d, %Y")
+today_title = date.today().strftime("%B %d, %Y")
 samples     = video_meta_df['title'][0:5]
 subtitles   = ['; '.join(samples[0 : 5])]
 thumbnails  = random.sample(thumbnail_urls,4)
 
 # %%
-markdown_content = f"""---
+post_markdown_content = f"""
+---
 date: {today}
-title: 'Daily Update – {today_title}'
+title: 'Daily Update'
 author: 'Afromation Digital'
 image: thumbnail.jpg
 format: 
@@ -169,6 +169,10 @@ execute:
     echo: false
     warning: false
     message: false
+
+categories:
+    - 'daily feed'
+
 ---
 '{subtitles[0]}'
 
@@ -179,7 +183,7 @@ library(tidyverse)
 videos_tbl <- read_csv('videos_tbl.csv') |> 
   mutate(embeds = embeds |> 
            str_replace_all('480', '100%') |> 
-           str_replace_all('270', '65%'))
+           str_replace_all('270', '50%'))
 
 
 ```
@@ -189,53 +193,67 @@ videos_tbl <- read_csv('videos_tbl.csv') |>
 
 videos_joined <- videos_tbl |> 
     select(publishedAt,title, description, embeds, 
-           channelId, category) |> 
-    filter(publishedAt >= lubridate::ymd('{today}')-1)
+           channelId, Category) |> 
+    filter(publishedAt >= lubridate::today()-1)
 
 videos <- videos_joined |>  
-    split(videos_joined$category) 
+    split(videos_joined$Category) 
     
 
 headings <- names(videos)
 
 ```
 
-## Today's Videos
+##  {today_title}
 
-::: panel-tabset
 ```{{r, results='asis'}}
 #| warning: false
 
-
 for (i in seq_along(videos)) {{
-    cat("# ",headings[i],"\\n")
+    cat("## ", headings[i], "\\n")
     current_df <- videos[[i]]
-  
     
-    for (j in seq_along(current_df$embeds)) {{
-        current_value <- current_df$embeds[j]
-        
-        current_title <- current_df$title[j]
-        cat("### ",current_title,"\\n")
-        cat(current_value)
-        cat("\\n")
-        cat("\\n") 
-         
-         
-         
- }}
+    cat("::: {{#listing-listing .quarto-listing .quarto-listing-container-grid}}", '\\n')
+    cat('::: {{.list .grid .quarto-listing-cols-3}}', '\\n')
+    
+    for (i in seq_along(current_df$embeds)) {{
+      if (!is.na(current_df$embeds[i])) {{  # Check if the embed is not empty
+        cat("::: g-col-1", '\\n')
+        cat("::: {{.quarto-grid-item .card .h-100 .card-left}}", '\\n')
+        cat('::: {{.listing-item-img-placeholder .card-img-top style="height: 150px;"}}', '\\n')
+        cat(current_df$embeds[i],'\\n')
+        cat(":::",'\\n')
+        cat("::: {{.card-body .post-contents}}",'\\n')
+        cat('<h5 class="card-title listing-title">', current_df$title[i],'</h5> \\n')
+        cat("::: {{.card-attribution .card-text-small .justify}} ",'\\n')
+        cat("::: listing-author ",'\\n')
+        cat(current_df$channelTitle[i],'\\n')
+        cat(":::",'\\n')
+        cat('\\n')
+        cat("::: listing-date ",'\\n')
+        cat(format(current_df$publishedAt[i], "%b %d"),'\\n')
+        cat(":::",'\\n')
+        cat(":::",'\\n')
+        cat(":::",'\\n')
+        cat(":::",'\\n')
+        cat(":::",'\\n')
+      }}
+  }}
+    cat(":::",'\\n')
+    cat(":::",'\\n')
 }}
+
 ```
-:::
+
 """
 
 # Save to a Markdown file
 file_name = os.path.join(path,'index.qmd')
 with open(file_name, "w", encoding="utf-8") as file:
-    file.write(markdown_content)
-    
-    
-    
+    file.write(post_markdown_content)
+
+# %%
+
 def open_image_from_url(url):
     response = requests.get(url)
     return Image.open(BytesIO(response.content))
@@ -254,9 +272,13 @@ collage.paste(images[3], (images[0].width, images[0].height))
 
 
 collage.save(os.path.join(path,'thumbnail.jpg'))
+collage.show()
 
-home_markdown_content = f"""---
-title: "HOME"
+
+# %%
+home_markdown_content = f"""
+---
+title: "Home"
 page-layout: full
 title-block-banner: true
 format:
@@ -272,10 +294,6 @@ listing:
   sort-ui: false
   filter-ui: false
 
-execute:
-  echo: false
-  warning: false
-  message: false
 ---
 # [Stories]{{.updates}}
 ::: {{#stories}}
@@ -285,7 +303,7 @@ execute:
 
 library(tidyverse)
 
-videos_tbl <- read_csv('posts/{today}/videos_tbl.csv') |> 
+videos_tbl <- read_csv('{dir_to_post_path}/videos_tbl.csv') |> 
   mutate(embeds = embeds |> 
            str_replace_all('480', '100%') |> 
            str_replace_all('height="270"', ''))
@@ -298,12 +316,12 @@ videos_tbl <- read_csv('posts/{today}/videos_tbl.csv') |>
 
 videos_joined <- videos_tbl |> 
     select(publishedAt,title, description, embeds, 
-           channelId, channelTitle, category) |> 
-    filter(publishedAt >= lubridate::ymd('{today}')-1)
+           channelId, channelTitle, Category) |> 
+    filter(publishedAt >= lubridate::today()-1)
 
 
 videos <- videos_joined |>  
-    split(videos_joined$category) 
+    split(videos_joined$Category) 
     
 
 headings <- names(videos)
@@ -321,22 +339,22 @@ for (i in seq_along(videos)) {{
     cat("::: {{#listing-listing .quarto-listing .quarto-listing-container-grid}}", '\\n')
     cat('::: {{.list .grid .quarto-listing-cols-3}}', '\\n')
     
-    for (j in seq_along(current_df$embeds)) {{
-      if (!is.na(current_df$embeds[j])) {{  # Check if the embed is not empty
+    for (i in seq_along(current_df$embeds)) {{
+      if (!is.na(current_df$embeds[i])) {{  # Check if the embed is not empty
         cat("::: g-col-1", '\\n')
         cat("::: {{.quarto-grid-item .card .h-100 .card-left}}", '\\n')
         cat('::: {{.listing-item-img-placeholder .card-img-top style="height: 150px;"}}', '\\n')
-        cat(current_df$embeds[j],'\\n')
+        cat(current_df$embeds[i],'\\n')
         cat(":::",'\\n')
         cat("::: {{.card-body .post-contents}}",'\\n')
-        cat('<h5 class="card-title listing-title">', current_df$title[j],'</h5> \\n')
+        cat('<h5 class="card-title listing-title">', current_df$title[i],'</h5> \\n')
         cat("::: {{.card-attribution .card-text-small .justify}} ",'\\n')
         cat("::: listing-author ",'\\n')
-        cat(current_df$channelTitle[j],'\\n')
+        cat(current_df$channelTitle[i],'\\n')
         cat(":::",'\\n')
         cat('\\n')
         cat("::: listing-date ",'\\n')
-        cat(format(current_df$publishedAt[j], "%b %d"),'\\n')
+        cat(format(current_df$publishedAt[i], "%b %d"),'\\n')
         cat(":::",'\\n')
         cat(":::",'\\n')
         cat(":::",'\\n')
@@ -353,8 +371,6 @@ for (i in seq_along(videos)) {{
 """
 
 # Save to a Markdown file
-file_name = os.path.join(home_dir,'index.qmd')
+file_name = os.path.join(dir_path,'index.qmd')
 with open(file_name, "w", encoding="utf-8") as file:
     file.write(home_markdown_content)
-
-
