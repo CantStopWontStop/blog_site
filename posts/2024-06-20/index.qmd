@@ -1,0 +1,71 @@
+---
+date: 2024-06-20
+title: 'Daily Update – Jun 20, 2024'
+author: 'Afromation Digital'
+image: thumbnail.jpg
+format: 
+    html:
+      toc: false
+title-block-banner: true
+execute:
+    echo: false
+    warning: false
+    message: false
+---
+'Fall of America: Saudi Arabia Moves off the Dollar, Who Really Created Bitcoin &amp; Attractive Spouses; Senegalese President arrived in Paris, Burkina Faso Suspended French TV; When Dave Chappelle Predicted A Real Life &#39;White Supremacist&#39; Finding Out He&#39;s Black - CH News Show; Steve Harvey Says Black Americans Aren&#39;t Getting Reparations If We Don&#39;t Vote For Biden/Harris; Ramaphosa inaugurated for second term as South Africa&#39;s president'
+
+```{r}
+
+library(tidyverse)
+
+videos_tbl <- read_csv('videos_tbl.csv') |> 
+  mutate(embeds = embeds |> 
+           str_replace_all('480', '100%') |> 
+           str_replace_all('270', '65%'))
+
+
+```
+
+```{r}
+#| echo: false
+
+videos_joined <- videos_tbl |> 
+    select(publishedAt,title, description, embeds, 
+           channelId, category) |> 
+    filter(publishedAt >= lubridate::ymd('2024-06-20')-1)
+
+videos <- videos_joined |>  
+    split(videos_joined$category) 
+    
+
+headings <- names(videos)
+
+```
+
+## Today's Videos
+
+::: panel-tabset
+```{r, results='asis'}
+#| warning: false
+
+
+for (i in seq_along(videos)) {
+    cat("# ",headings[i],"\n")
+    current_df <- videos[[i]]
+  
+    
+    for (j in seq_along(current_df$embeds)) {
+        current_value <- current_df$embeds[j]
+        
+        current_title <- current_df$title[j]
+        cat("### ",current_title,"\n")
+        cat(current_value)
+        cat("\n")
+        cat("\n") 
+         
+         
+         
+ }
+}
+```
+:::
