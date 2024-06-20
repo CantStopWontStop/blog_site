@@ -156,9 +156,10 @@ subtitles   = ['; '.join(samples[0 : 5])]
 thumbnails  = random.sample(thumbnail_urls,4)
 
 # %%
-markdown_content = f"""---
+markdown_content = f"""
+---
 date: {today}
-title: 'Daily Update – {today_title}'
+title: 'Daily Update'
 author: 'Afromation Digital'
 image: thumbnail.jpg
 format: 
@@ -169,6 +170,10 @@ execute:
     echo: false
     warning: false
     message: false
+
+categories:
+    - 'daily feed'
+
 ---
 '{subtitles[0]}'
 
@@ -179,7 +184,7 @@ library(tidyverse)
 videos_tbl <- read_csv('videos_tbl.csv') |> 
   mutate(embeds = embeds |> 
            str_replace_all('480', '100%') |> 
-           str_replace_all('270', '65%'))
+           str_replace_all('270', '50%'))
 
 
 ```
@@ -189,44 +194,58 @@ videos_tbl <- read_csv('videos_tbl.csv') |>
 
 videos_joined <- videos_tbl |> 
     select(publishedAt,title, description, embeds, 
-           channelId, category) |> 
-    filter(publishedAt >= lubridate::ymd('{today}')-1)
+           channelId, Category) |> 
+    filter(publishedAt >= lubridate::today()-1)
 
 videos <- videos_joined |>  
-    split(videos_joined$category) 
+    split(videos_joined$Category) 
     
 
 headings <- names(videos)
 
 ```
 
-## Today's Videos
+##  {today_title}
 
-::: panel-tabset
 ```{{r, results='asis'}}
 #| warning: false
 
-
 for (i in seq_along(videos)) {{
-    cat("# ",headings[i],"\\n")
+    cat("## ", headings[i], "\\n")
     current_df <- videos[[i]]
-  
     
-    for (j in seq_along(current_df$embeds)) {{
-        current_value <- current_df$embeds[j]
-        
-        current_title <- current_df$title[j]
-        cat("### ",current_title,"\\n")
-        cat(current_value)
-        cat("\\n")
-        cat("\\n") 
-         
-         
-         
- }}
+    cat("::: {{#listing-listing .quarto-listing .quarto-listing-container-grid}}", '\\n')
+    cat('::: {{.list .grid .quarto-listing-cols-3}}', '\\n')
+    
+    for (i in seq_along(current_df$embeds)) {{
+      if (!is.na(current_df$embeds[i])) {{  # Check if the embed is not empty
+        cat("::: g-col-1", '\\n')
+        cat("::: {{.quarto-grid-item .card .h-100 .card-left}}", '\\n')
+        cat('::: {{.listing-item-img-placeholder .card-img-top style="height: 150px;"}}', '\\n')
+        cat(current_df$embeds[i],'\\n')
+        cat(":::",'\\n')
+        cat("::: {{.card-body .post-contents}}",'\\n')
+        cat('<h5 class="card-title listing-title">', current_df$title[i],'</h5> \\n')
+        cat("::: {{.card-attribution .card-text-small .justify}} ",'\\n')
+        cat("::: listing-author ",'\\n')
+        cat(current_df$channelTitle[i],'\\n')
+        cat(":::",'\\n')
+        cat('\\n')
+        cat("::: listing-date ",'\\n')
+        cat(format(current_df$publishedAt[i], "%b %d"),'\\n')
+        cat(":::",'\\n')
+        cat(":::",'\\n')
+        cat(":::",'\\n')
+        cat(":::",'\\n')
+        cat(":::",'\\n')
+      }}
+  }}
+    cat(":::",'\\n')
+    cat(":::",'\\n')
 }}
+
 ```
-:::
+
 """
 
 # Save to a Markdown file
