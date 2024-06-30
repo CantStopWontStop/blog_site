@@ -36,11 +36,11 @@ videos_tbl <- read_csv('videos_tbl.csv') |>
 
 videos_joined <- videos_tbl |> 
     select(publishedAt,title, description, embeds, 
-           channelId, Category) |> 
-    filter(publishedAt >= lubridate::today()-1)
+           channelId, category) |> 
+    filter(publishedAt >= lubridate::ymd('2024-06-25')-1)
 
 videos <- videos_joined |>  
-    split(videos_joined$Category) 
+    split(videos_joined$category) 
     
 
 headings <- names(videos)
