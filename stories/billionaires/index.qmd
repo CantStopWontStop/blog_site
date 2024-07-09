@@ -1,0 +1,63 @@
+---
+title: "Welcome to the Blog"
+author: 'Afromation Digital'
+date: "2023-01-07"
+categories: [update]
+title-block-banner: true
+image: https://external-preview.redd.it/the-myth-of-mansa-musas-enslaved-entourage-v0-2eHtJisctiZgvrpMvt2GrWp6GEOZyl0b3caWQ8APuWs.jpg?auto=webp&s=1ddd79e03c7cf4ca28b3c278fa2844e9d9bb6ea8
+---
+```{r}
+library(ggplot2)
+```
+
+```{r}
+data <- data.frame(
+    amount_numbers = c(1000000,1000000000, 3900000,30000000,2996000,1828000,2244000,3928000),
+    amount_words   = c('million', 'billion', 'avg_lifetime_spending', 'avg_lifetime_earnings', 'Median household income_white', 'Median household income_african','Median household income_hispanic','Median household income_asian')
+    
+)
+
+data
+```
+
+```{r}
+ggplot(data,
+       aes(y = amount_numbers,
+           x = amount_words)) + 
+    geom_col()
+```
+
+![](https://external-preview.redd.it/the-myth-of-mansa-musas-enslaved-entourage-v0-2eHtJisctiZgvrpMvt2GrWp6GEOZyl0b3caWQ8APuWs.jpg?auto=webp&s=1ddd79e03c7cf4ca28b3c278fa2844e9d9bb6ea8)
+
+```{r}
+# Set seed for reproducibility
+set.seed(123)
+
+# Number of observations
+n <- 500
+
+# Generate random proportions from a reciprocal distribution (left-skewed)
+proportions <- 1 / runif(n, min = 1, max = 100)
+
+# Scale proportions to sum to 1
+proportions <- proportions / sum(proportions)
+
+# Calculate incomes based on scaled proportions
+incomes <- proportions * 1000000000
+
+# Adjust incomes to ensure max income is $10,000,000
+incomes <- pmin(incomes, 10000000)
+
+# Create a data frame with numbered observations
+income_data <- data.frame(Observation = 1:n |> as.character(), Income = incomes)
+
+# Display the first few rows of the dataset
+head(income_data)
+```
+
+```{r}
+ggplot(income_data,
+       aes(x = Observation,
+           y = Income)) +
+    geom_col()
+```
