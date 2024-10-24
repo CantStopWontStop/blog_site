@@ -1,30 +1,37 @@
 #!/bin/bash
 
 log_error() {
-    echo "Error: $1" >&2
-    echo "$(date '+%Y-%m-%d %H:%M:%S') - Error: $1" >> /var/log/generate_post.log 
+    sed -i "1s/^/$(date '+%Y-%m-%d %H:%M:%S') - Error: $1\n/" /var/log/generate_post_today.log
+	echo "----------------" >> /var/log/generate_post_today.log
+    echo /var/log/generate_post_today.log >> /var/log/generate_post.log
 }
 
-cd "${0%/*}" 
+send_mail() {
+    echo "Post generation failed today ($(date '+%Y-%m-%d')). Please find the attachment for further information." | mail -s "Afromation Blog | $1" -a /var/log/generate_post_today.log vishwa0403@gmail.com 2>> /var/log/send_mail.log
+    echo "$(date '+%Y-%m-%d %H:%M:%S')" >> /var/log/send_mail.log
+    echo "----------------" >> /var/log/send_mail.log
+}
 
-git pull origin main || { log_error "Failed to pull latest changes from Git."; exit 1; }
+run_command() {
+    "$@" 2> /var/log/generate_post_today.log
+    if [ $? -ne 0 ]; then
+        log_error "Failed to execute: $*"
+        send_mail "Failed to execute: $*"
+        exit 1
+    fi
+}
 
-pip install pipreqs 
-
-pipreqs . --force || { log_error "Failed to generate requirements.txt."; exit 1; }
-
-pip install -r requirements.txt || { log_error "Failed to install dependencies from requirements.txt."; exit 1; }
-
-python3 generate_post.py || { log_error "Failed to generate post using generate_post.py."; exit 1; }
-
-cd .. 
-
+cd "${0%/*}"
+run_command git pull origin main
+run_command pip install pipreqs
+run_command pipreqs . --force
+run_command pip install -r requirements.txt
+run_command python3 generate_post.py
+cd ..
 git add .
-
-git commit -m "post: $(date '+%Y-%m-%d')"
-
-git push origin main || { log_error "Failed to push changes to remote repository."; exit 1; }
-
+run_command git commit -m "post: $(date '+%Y-%m-%d')"
+run_command git push origin main
 echo "$(date '+%Y-%m-%d %H:%M:%S') - Script executed successfully." >> /var/log/generate_post.log 
-
+echo "----------------" >> /var/log/generate_post_today.log
+exit 0
 
