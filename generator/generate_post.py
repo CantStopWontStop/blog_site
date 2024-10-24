@@ -85,11 +85,12 @@ def main(channelID):
 
     response = request.execute()
 
-    snippet = response['items'][0]['snippet']
-    videoid = response['items'][0]['id']['videoId']
-    video_meta.append(snippet)
-    video_id.append(videoid)
-    category.append(channel_category_dict.get(channelID))
+    if(len(response['items']) > 0):
+        snippet = response['items'][0]['snippet']
+        videoid = response['items'][0]['id']['videoId']
+        video_meta.append(snippet)
+        video_id.append(videoid)
+        category.append(channel_category_dict.get(channelID))
 
 
 #df  = pd.read_csv('youTubeChannels.csv')
@@ -142,7 +143,7 @@ embed_codes = [item[0]['player']['embedHtml'] for item in video]
 
 # %%
 meta = pd.DataFrame.from_dict(video_meta)
-video_meta_df = meta.assign(videID = video_id,
+video_meta_df = meta.assign(videoID = video_id,
                             embeds = embed_codes,
                             category = category)
 video_meta_df = video_meta_df.sort_values(by=['publishedAt'], ascending=False)
