@@ -8,7 +8,7 @@ log_error() {
 
 send_mail() {
     cat /var/log/generate_post_today.log > log.txt
-    echo "Post generation failed today ($(date '+%Y-%m-%d')). Please find the attachment for further information." | mail -s "Afromation Blog | $1" -A log.txt vishwa0403@gmail.com soried@gmail.com 2>> /var/log/send_mail.log
+    echo "Post generation failed today ($(date '+%Y-%m-%d')). Please find the attachment for further information." | mail -s "Afromation Blog | $1" -A ./log.txt vishwa0403@gmail.com soried@gmail.com 2>> /var/log/send_mail.log
     echo "$(date '+%Y-%m-%d %H:%M:%S')" >> /var/log/send_mail.log
     echo "----------------" >> /var/log/send_mail.log
     rm log.txt
