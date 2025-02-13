@@ -1,6 +1,7 @@
 ---
 title: "Welcome to the Blog"
 author: 'Afromation Digital'
+draft: true
 date: "2023-01-07"
 categories: [update]
 title-block-banner: true
