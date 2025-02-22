@@ -1,37 +1,31 @@
 ---
-title: "HOME"
-page-layout: full
+date: 2025-02-22
+title: 'Daily Update – Feb 22, 2025'
+author: 'Afromation Digital'
+image: thumbnail.jpg
+format: 
+    html:
+      toc: false
 title-block-banner: true
-format:
-  html:
-    css: assets/css/feed_header.css
-    
-listing:
-  contents: stories
-  id: stories
-  sort: "date desc"
-  type: grid
-  categories: false
-  sort-ui: false
-  filter-ui: false
-
 execute:
-  echo: false
-  warning: false
-  message: false
+    echo: false
+    warning: false
+    message: false
+
+categories:
+    - 'daily feed'
+
 ---
-# [Stories]{.updates}
-::: {#stories}
-:::
+'GENETICIST fear this TRUTH about you; Are Black Women THE BEST To Marry?!; Notorious B.I.G.&#39;s Mom &#39;Suddenly&#39; Passes Away At 72 - HP News; A POUR MIND&#39;S VALENTINES | 85 SOUTH SHOW PODCAST | 02.21.25; She just exposed the UN for what they really are'
 
 ```{r}
 
 library(tidyverse)
 
-videos_tbl <- read_csv('posts/2025-02-22/videos_tbl.csv') |> 
+videos_tbl <- read_csv('videos_tbl.csv') |> 
   mutate(embeds = embeds |> 
            str_replace_all('480', '100%') |> 
-           str_replace_all('height="270"', ''))
+           str_replace_all('270', '50%'))
 
 
 ```
@@ -41,18 +35,18 @@ videos_tbl <- read_csv('posts/2025-02-22/videos_tbl.csv') |>
 
 videos_joined <- videos_tbl |> 
     select(publishedAt,title, description, embeds, 
-           channelId, channelTitle, category) |> 
+           channelId, category) |> 
     filter(publishedAt >= lubridate::ymd('2025-02-22')-1)
-
 
 videos <- videos_joined |>  
     split(videos_joined$category) 
     
 
 headings <- names(videos)
+
 ```
 
-# [Updates – Feb 22, 2025]{.updates}
+##  Feb 22, 2025
 
 ```{r, results='asis'}
 #| warning: false
@@ -64,22 +58,22 @@ for (i in seq_along(videos)) {
     cat("::: {#listing-listing .quarto-listing .quarto-listing-container-grid}", '\n')
     cat('::: {.list .grid .quarto-listing-cols-3}', '\n')
     
-    for (j in seq_along(current_df$embeds)) {
-      if (!is.na(current_df$embeds[j])) {  # Check if the embed is not empty
+    for (i in seq_along(current_df$embeds)) {
+      if (!is.na(current_df$embeds[i])) {  # Check if the embed is not empty
         cat("::: g-col-1", '\n')
         cat("::: {.quarto-grid-item .card .h-100 .card-left}", '\n')
         cat('::: {.listing-item-img-placeholder .card-img-top style="height: 150px;"}', '\n')
-        cat(current_df$embeds[j],'\n')
+        cat(current_df$embeds[i],'\n')
         cat(":::",'\n')
         cat("::: {.card-body .post-contents}",'\n')
-        cat('<h5 class="card-title listing-title">', current_df$title[j],'</h5> \n')
+        cat('<h5 class="card-title listing-title">', current_df$title[i],'</h5> \n')
         cat("::: {.card-attribution .card-text-small .justify} ",'\n')
         cat("::: listing-author ",'\n')
-        cat(current_df$channelTitle[j],'\n')
+        cat(current_df$channelTitle[i],'\n')
         cat(":::",'\n')
         cat('\n')
         cat("::: listing-date ",'\n')
-        cat(format(current_df$publishedAt[j], "%b %d"),'\n')
+        cat(format(current_df$publishedAt[i], "%b %d"),'\n')
         cat(":::",'\n')
         cat(":::",'\n')
         cat(":::",'\n')
