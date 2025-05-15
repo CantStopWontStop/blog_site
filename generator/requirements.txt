@@ -2,5 +2,5 @@ google_api_python_client==2.116.0
 google_auth_oauthlib==1.2.0
 pandas==2.2.3
 Pillow==11.2.1
-protobuf==6.30.2
+protobuf==6.31.0
 Requests==2.32.3
