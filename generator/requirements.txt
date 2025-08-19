@@ -3,4 +3,4 @@ google_auth_oauthlib==1.2.0
 pandas==2.3.1
 Pillow==11.3.0
 protobuf==6.32.0
-Requests==2.32.4
+Requests==2.32.5
