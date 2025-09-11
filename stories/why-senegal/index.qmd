@@ -167,7 +167,7 @@ library(leaflet)
 
 leaflet(read.csv('dakar-sites.csv'),
         options = leafletOptions(zoomControl = FALSE)) |> 
-    addProviderTiles(providers$Stamen.Toner) |> 
+    addProviderTiles("Stadia.StamenToner") |> 
     addMarkers(~Long, ~Lat, 
                popup = ~Site, 
                label = ~Site)
