@@ -29,6 +29,7 @@ website:
       - stories.qmd
 
 execute:
+    freeze: auto
     echo: false
     warning: false
     message: false

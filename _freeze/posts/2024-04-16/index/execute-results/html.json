@@ -1,0 +1,15 @@
+{
+  "hash": "36f0c3628c197fccb7555557046895c5",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ndate: 2024-04-16\ntitle: 'Daily Update'\nauthor: 'Afromation Digital'\nimage: thumbnail.jpg\nformat: \n    html:\n      toc: false\ntitle-block-banner: true\nexecute:\n    echo: false\n    warning: false\n    message: false\n\ncategories:\n    - 'daily feed'\n---\n\n'Why whites always get to be in everything black people do \\| Farrakhan; Ukraine Opening Embassies Across Africa To Counter Russia; Pres. Ramaphosa Angered Over U.S. Anti-South African Bill Passed By House Foreign Affairs; UPDATES: Mali obtains 150 million liters of diesel from Niger; Aisha Bowe on Being a NASA Rocket Scientist, Space Travel, Jeff Bezos’ Blue Origin Rocket, & Aliens'\n\n\n::: {.cell}\n\n:::\n\n\n\n::: {.cell}\n\n:::\n\n\n## April 16, 2024\n\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
