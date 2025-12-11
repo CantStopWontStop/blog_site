@@ -1,0 +1,17 @@
+{
+  "hash": "877a711004517769a841b07e229688e5",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Welcome to the Blog\"\nauthor: 'Afromation Digital'\ndraft: true\ndate: \"2023-01-07\"\ncategories: [update]\ntitle-block-banner: true\nimage: https://external-preview.redd.it/the-myth-of-mansa-musas-enslaved-entourage-v0-2eHtJisctiZgvrpMvt2GrWp6GEOZyl0b3caWQ8APuWs.jpg?auto=webp&s=1ddd79e03c7cf4ca28b3c278fa2844e9d9bb6ea8\n---\n\n::: {.cell}\n\n:::\n\n\n\n::: {.cell}\n::: {.cell-output .cell-output-stdout}\n\n```\n  amount_numbers                     amount_words\n1      1.000e+06                          million\n2      1.000e+09                          billion\n3      3.900e+06            avg_lifetime_spending\n4      3.000e+07            avg_lifetime_earnings\n5      2.996e+06    Median household income_white\n6      1.828e+06  Median household income_african\n7      2.244e+06 Median household income_hispanic\n8      3.928e+06    Median household income_asian\n```\n\n\n:::\n:::\n\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](index_files/figure-html/unnamed-chunk-3-1.png){width=672}\n:::\n:::\n\n\n![](https://external-preview.redd.it/the-myth-of-mansa-musas-enslaved-entourage-v0-2eHtJisctiZgvrpMvt2GrWp6GEOZyl0b3caWQ8APuWs.jpg?auto=webp&s=1ddd79e03c7cf4ca28b3c278fa2844e9d9bb6ea8)\n\n\n::: {.cell}\n::: {.cell-output .cell-output-stdout}\n\n```\n  Observation    Income\n1           1 1586035.9\n2           2  591339.2\n3           3 1126589.6\n4           4  528629.6\n5           5  496680.6\n6           6 8482752.0\n```\n\n\n:::\n:::\n\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](index_files/figure-html/unnamed-chunk-5-1.png){width=672}\n:::\n:::\n\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
