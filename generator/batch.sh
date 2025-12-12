@@ -31,7 +31,7 @@ run_command pip install -r requirements.txt
 run_command python3 generate_post.py
 cd ..
 run_command quarto render
-run_command cp _site/* /var/www/afromation/public_html/
+run_command cp -r _site/* /var/www/afromation/public_html/
 git add .
 run_command git commit -m "post: $(date '+%Y-%m-%d')"
 run_command git push origin main
