@@ -3,7 +3,7 @@
 log_error() {
     sed -i "1s/^/$(date '+%Y-%m-%d %H:%M:%S') - Error: $1\n/" /var/log/generate_post_today.log
 	echo "----------------" >> /var/log/generate_post_today.log
-    echo /var/log/generate_post_today.log >> /var/log/generate_post.log
+    cat /var/log/generate_post_today.log >> /var/log/generate_post.log
 }
 
 send_mail() {
