@@ -1,7 +1,7 @@
 #!/bin/bash
 
 log_error() {
-    sed -i "1s/^/$(date '+%Y-%m-%d %H:%M:%S') - Error: $1\n/" /var/log/generate_post_today.log
+    sed -i "1s/^/$(date '+%Y-%m-%d %H:%M:%S') - Error: Afromation Site $1\n/" /var/log/generate_post_today.log
 	echo "----------------" >> /var/log/generate_post_today.log
     cat /var/log/generate_post_today.log >> /var/log/generate_post.log
 }
@@ -35,7 +35,7 @@ run_command cp -r _site/* /var/www/afromation/public_html/
 git add .
 run_command git commit -m "post: $(date '+%Y-%m-%d')"
 run_command git push origin main
-echo "$(date '+%Y-%m-%d %H:%M:%S') - Script executed successfully." >> /var/log/generate_post.log 
+echo "$(date '+%Y-%m-%d %H:%M:%S') - Afromation | Script executed successfully." >> /var/log/generate_post.log 
 echo "----------------" >> /var/log/generate_post_today.log
 exit 0
 
