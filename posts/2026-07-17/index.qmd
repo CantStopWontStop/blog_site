@@ -1,6 +1,6 @@
 ---
-date: 2026-07-16
-title: 'Daily Update – Jul 16, 2026'
+date: 2026-07-17
+title: 'Daily Update – Jul 17, 2026'
 author: 'Afromation Digital'
 image: thumbnail.jpg
 format: 
@@ -16,9 +16,7 @@ categories:
     - 'daily feed'
 
 ---
-
-'Hebrews, Moors, Indians, FBA, Africans &amp; Caribbeans: Can We Build With and Love One Another?; JAY-Z’S YANKEE STADIUM BREAKDOWN: What Really Happened | Single Women Crisis &amp; Broke Friends; BREAKING: Nolan Wells ‘Boat GPS Data’ &amp; ‘Audio’ Released - HP News; Taylor Swift Thought She Ruined Wedding &amp; Started Crying On Punk&#39;d With Andrew Santino; July 15, 2026'
-
+'TRUMP ANNOUNCEMENT, MASSIE BILLS, JD VANCE EXPOSED, JASMINE CROCKETT FAIL, NY HUGE WIN; Hebrews, Moors, Indians, FBA, Africans &amp; Caribbeans: Can We Build With and Love One Another?; WHY ARE YOU SO TIRED? #socialproofpodcast; Bonnet Crew Members TRIGGERED By Woman  Holding Them Accountable; Adam Sandler Yelled at Bobby Lee After He Messed Up ONE Line 30x I CLUB SHAY SHAY'
 
 ```{r}
 
@@ -38,7 +36,7 @@ videos_tbl <- read_csv('videos_tbl.csv') |>
 videos_joined <- videos_tbl |> 
     select(publishedAt,title, description, embeds, 
            channelId, category) |> 
-    filter(publishedAt >= lubridate::ymd('2026-07-16')-1)
+    filter(publishedAt >= lubridate::ymd('2026-07-17')-1)
 
 videos <- videos_joined |>  
     split(videos_joined$category) 
@@ -48,9 +46,7 @@ headings <- names(videos)
 
 ```
 
-
-##  Jul 16, 2026
-
+##  Jul 17, 2026
 
 ```{r, results='asis'}
 #| warning: false
