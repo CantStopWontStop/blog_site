@@ -1,6 +1,6 @@
 ---
-date: 2026-08-13
-title: 'Daily Update – Aug 13, 2026'
+date: 2026-08-14
+title: 'Daily Update – Aug 14, 2026'
 author: 'Afromation Digital'
 image: thumbnail.jpg
 format: 
@@ -16,9 +16,7 @@ categories:
     - 'daily feed'
 
 ---
-
-'She Spoke To Her Biracial Nephew About Race And Got Disowned; Van Lathan On Black Americans Playing African Roles Like Nelson Mandela; Women Shouldn&#39;t Sh*t Or Fart In Front Of Men I CLUB SHAY SHAY; FINAL WORD TO THE HATERS | INVEST FEST RECAP, WILL MONEY SAVE YOU?, LONG DISTANCE LOVE &amp; BIG MEECH; White People Furious Over Melanin&#39;s Power?'
-
+'Van Lathan Ate Deer &amp; Rabbit In Louisiana | One54 Africa Podcast; Candace Owens vs Andrew Wilson: The Great Debate.; ISRAEL FOOLED TRUMP, IRAN CLEARED, KAROLINE LEAVITT QUITS, RO KHANNA GRILLED, TUCKER REVEAL; What Are You Doing For Our Community? 🗳️; GIVE VINI &amp; OTHER ATHLETES THEIR FLOWERS NOW, NOT WHEN THEY REITR 💐 #vini #vinijr #realmadrid'
 
 ```{r}
 
@@ -38,7 +36,7 @@ videos_tbl <- read_csv('videos_tbl.csv') |>
 videos_joined <- videos_tbl |> 
     select(publishedAt,title, description, embeds, 
            channelId, category) |> 
-    filter(publishedAt >= lubridate::ymd('2026-08-13')-1)
+    filter(publishedAt >= lubridate::ymd('2026-08-14')-1)
 
 videos <- videos_joined |>  
     split(videos_joined$category) 
@@ -48,9 +46,7 @@ headings <- names(videos)
 
 ```
 
-
-##  Aug 13, 2026
-
+##  Aug 14, 2026
 
 ```{r, results='asis'}
 #| warning: false
