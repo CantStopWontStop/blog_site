@@ -24,7 +24,7 @@ run_command() {
 }
 
 cd "${0%/*}"
-run_command git pull origin main
+run_command git pull origin main --rebase
 run_command pip install pipreqs
 run_command pipreqs . --use-local --force
 run_command pip install -r requirements.txt
